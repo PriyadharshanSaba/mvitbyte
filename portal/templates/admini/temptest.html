@@ -1,0 +1,25 @@
+{% block content %}
+{% load staticfiles %}
+<!DOCTYPE html>
+    <head>
+        <title>Testing</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/headtest_admin.css' %}">
+    </head>
+
+
+
+
+<body>
+    {{ testing.0 }}
+    <form method="post" action="{{ 'dbokay.html' }}">
+        {% csrf_token %}
+        <input type='text' placeholder='Starting from' name='startUSN' required>
+        <input type='text' placeholder='To' name='endUSN' required>
+        <button type='submit' class='subm'>Update DB</button>
+    </form>
+    
+    
+    
+</body>
+</html>
+{% endblock %}

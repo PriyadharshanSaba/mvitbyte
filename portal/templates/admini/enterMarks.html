@@ -1,0 +1,27 @@
+{% block content %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+    <head>
+        <title>Dash Marks</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/headtest_admin.css' %}">
+    </head>
+
+<body>
+    <h2>Run Script<h2>
+    <br><br>
+    <form method="post" action=" {{ 'temptest.html' }}">
+        {% csrf_token %}
+<!--        <input type="text" placeholder="SEM" name="semester" required>-->
+        <input type="radio" name="sem" value="s1">Sem I<br>
+        <input type="radio" name="sem" value="s2">Sem II<br>
+        <input type="radio" name="sem" value="s3">Sem III<br>
+        <input type="radio" name="sem" value="s4">Sem IV<br>
+        <button type="submit" class="subm">Do</button>
+    </form>
+    
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% block content %}
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admin</title>
+        <meta charset="utf-8" />
+        <link rel='stylesheet' type='text/css' href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" language="JavaScript" src="{% static 'js/USNPSW_ad.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/headtest_admin.css' %}">
+    </head>
+    
+ 
+    
+<!--    <body class="body" style="background-color:#f6f6f6">-->
+<!-- 862,330 =2.61| 688, 250 = 2.7 | 711,260 = 2.7  -->
+<!--  1440, 640 = 2.25 | 566,200= 2.83 | 935,380 = 2.46  -->
+<body style="background-color:#808080" >
+    <script>
+            $(document).ready(function () {
+                              var logTMargeSet = ($(window).height())/2.6;
+                              var logWset= ($(window).width())/2.25;
+                              $('.logg').css("margin-top",logTMargeSet+"px")
+                              $('.logg').css("margin-left",logWset+"px")
+                              });
+                              
+             $(document).ready(function () {
+                           var winHeight = ($(window).height());
+                           var winWid= ($(window).width());
+                            $('.bbimg').css("width", winWid+"px");
+                            $('.bbimg').css("height",winHeight + "px");
+                            $('.model').css("width","50 px");
+                        });
+
+            </script>
+    <script>
+        incorrect()
+    </script>
+    
+        <div>
+            <img src="{% static 'images/loggy_admini.jpg' %}" class="bbimg">
+        
+        <div class="logg">
+        <div>
+        <form method="post" action="{{ 'home_ad.html' }}">
+            <br>
+            <input type="text" placeholder="Username" name="adminNAME" id="adminNAME" required>{% csrf_token %}
+            <input type="password" placeholder="Password" name="adminPSW" required>
+            <button type="submit" class="subm">Login</button><br><br>
+            <p style="text-align:center;"><font size="2"><a href="{{ 'ad.html' }}" style="color:#4d4d4d;text-decoration:none;">Forgot Password?</a></font></p>
+            </form>
+        </div>
+
+
+</div>
+</body>
+</html>
+
+<!--<script type="text/javascript" language="JavaScript" src="{% static 'js/incorrectUSNPSW_alert.js' %}"></script>-->
+
+{% endblock %}
+
+
