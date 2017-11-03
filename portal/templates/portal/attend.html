@@ -1,0 +1,25 @@
+{% block content %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<head>
+  <title>Attendance</title>
+</head>
+<body>
+  <h2>Hey!<h2><p>{{ datas.0.0 }}</p>
+      <h5>Phone: {{ datas.0.1 }}</h5>
+      <h5>{{ datas.0.2.0 }} : {{ datas.0.3.0 }}</h5>
+      <h5>{{ datas.0.2.1 }} : {{ datas.0.3.1 }}</h5>
+      <h5>{{ datas.0.2.2 }} : {{ datas.0.3.2 }}</h5>
+      <h5>{{ datas.0.2.3 }} : {{ datas.0.3.3 }}</h5>
+      <h5>{{ datas.0.2.4 }} : {{ datas.0.3.4 }}</h5>
+      <h5>{{ datas.0.2.5 }} : {{ datas.0.3.5 }}</h5>
+      
+      <a href=" {{ 'red.html' }}"> Go back </a>
+      <a href=" {{ 'headtest.html' }}"> Sign Out </a>
+      
+</body>
+
+</html>
+
+{% endblock %}

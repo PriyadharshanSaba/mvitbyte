@@ -1,0 +1,23 @@
+{% block content %}
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+    <head>
+        <title>Error</title>
+    </head>
+
+<body>
+    <h2>Error in parsing. Check the USN<h2><br><br>
+        <h6>{{ datas }}</h6>
+    <form action="{{ 'headtest.html' }}">
+        <button type='submit'>Return</button>
+    </form>
+
+
+</body>
+
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Student Portal</title>
+        <meta charset="utf-8" />
+        {% load staticfiles %}
+        <link rel='stylesheet' href="{% static 'css/bootstrap.min.css' type='text/css' %}">
+    </head>
+        <div>
+            {% block content %}
+            {% endblock %}	
+        </div>
+   </div>
+   <body>
+       {% for t in tests %}
+       <h2>{{t}}</h2>
+           {% endfor %}
+   </body>
+    
+</html>
+
+
+
