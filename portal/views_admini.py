@@ -16,6 +16,9 @@ import csv
 def adminiHome(request):
     return render(request,'admini/headtest_admini.html')
 
+def product(request):
+    return render(request,'admini/pro.html')
+
 
 def forgotLoginDetails(request):
     return render(request,'admini/ad.html')

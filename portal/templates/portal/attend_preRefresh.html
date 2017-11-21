@@ -1,0 +1,89 @@
+{% block content %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<head>
+  <title>Attendance</title>
+  <meta charset="utf-8" />
+  <title>Table Style</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/attendance.css' %}">
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+    <meta http-equiv="refresh" content="1; url='{{ 'attend.html' }}' ">
+</head>
+<body onload="myFunction()" style="margin:0;" >
+    
+    <div id="loader"></div>
+    
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <h2>Tada!</h2>
+        <p>Some text in my newly loaded page..</p>
+    </div>
+    
+    <script>
+        var myVar;
+</script>
+
+<body>
+    <div class="se-pre-con"></div>
+    <h1> &emsp;</h1>
+        <div class="table-title">
+            <h3>Attendance</h3>
+        </div>
+        <div>
+        <table class="table-fill">
+            <thead>
+                <tr>
+                    <th class="text-center"><b>Code<b></th>
+                    <th class="text-center"><b>Subject<b></th>
+                    <th class="text-center"><b>Attendance<b></th>
+                </tr>
+            </thead>
+            <tbody class="table-hover">
+                <tr>
+                    <td class="text-center">{{ datas.3.0 }}</td>
+                    <td class="text-center">{{ datas.4.0.0 }}</td>
+                    <td class="text-center">{{ datas.5.0 }}%</td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{ datas.3.1 }}</td>
+                    <td class="text-center">{{ datas.4.1.0 }}</td>
+                    <td class="text-center">{{ datas.5.1 }}%</td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{ datas.3.2 }}</td>
+                    <td class="text-center">{{ datas.4.2.0 }}</td>
+                    <td class="text-center">{{ datas.5.2 }}%</td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{ datas.3.3 }}</td>
+                    <td class="text-center">{{ datas.4.3.0 }}</td>
+                    <td class="text-center">{{ datas.5.3 }}%</td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{ datas.3.4 }}</td>
+                    <td class="text-center">{{ datas.4.4.0  }}</td>
+                    <td class="text-center">{{ datas.5.4 }}%</td>
+                </tr>
+                <tr>
+                    <td class="text-center">{{ datas.3.5 }}</td>
+                    <td class="text-center">{{ datas.4.5.0 }}</td>
+                    <td class="text-center">{{ datas.5.5 }}%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="footr">
+        <br><br><br>
+        <p><a  href=" {{ 'red.html' }}"> loading... </a></p>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
+
+{% endblock %}

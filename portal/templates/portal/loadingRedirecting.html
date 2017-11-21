@@ -1,9 +1,20 @@
+{% block content %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/log_redirection.css' %}">
+     <title>Hang on...</title>
     <meta http-equiv="refresh" content="1; url='{{ 'welcomeNewRege.html' }}' ">
-    <title>Hang on...</title>
 </head>
 
 <body>
-    <h2 class='redirectingMessage'>Hang On there... Unwrapping your secrets</h2>
+<div>
+    <div class="head">
+            <h1 class='head'>Hang On there... Unravelling your secrets</h1>
+    </div>
+    <div id="loader"></div>
+</div>
+</body>
 </html>
+
+{% endblock %}
