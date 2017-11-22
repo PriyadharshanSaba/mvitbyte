@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<head>
+    <title>Semester Marks</title>
+</head>
+
+<style>
+    
+html {margin: 0; height: 100%; overflow: hidden}
+
+div.header {
+        background-color:black;
+        width:100%;
+    }
+div.nextToNotch {
+    float:right
+    margin-left:200px;
+    background-color:#1a1a1a;
+    width:100%;
+    height:80px;
+    min-width:90%;
+}
+div.LeftNotch{
+    
+    background-color:#cccccc;
+    width:250px;
+    float:left;
+    height:80px;
+    position:relative;
+}
+div.menuHeader{
+    float:right;
+    margin-top:30px;
+    margin-right:10px;
+    background-color:white;
+    width:91px;
+    min-width:80px;
+}
+div.contentMod1{
+    width: 220px;
+    margin: 0;
+    height:400px;
+    float:left;
+    background:#FF9900;
+    margin-left:14px;
+    font-size:15px;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+div.contentMod1:hover{
+    color:#cccccc;
+    background: linear-gradient(to right, #000000 -3%, #ff9900 102%);
+    font-size:20px;
+    width: 350px;
+}
+div.contentMod2{
+    width: 200px;
+    margin: 0;
+    height:400px;
+    float:left;
+    background:#FFCC00;
+    font-size:15px;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+.contentMod2:hover{
+    background: linear-gradient(to right, #ff9900 1%, #ffcc00 111%);
+    font-size:20px;
+    width:350px;
+
+}
+div.contentMod3{
+    width: 180px;
+    margin: 0;
+    height:400px;
+    float:left;
+    background:#0066cc;
+    font-size:15px;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+.contentMod3:hover{
+    background: linear-gradient(to right, #ffcc00 7%, #0066cc 99%);
+    font-size:20px;
+    width: 350px;
+}
+div.contentMod4{
+    width: 180px;
+    margin: 0;
+    height:400px;
+    float:left;
+    background:#669900;
+    font-size:15px;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+.contentMod4:hover{
+    background: linear-gradient(to right, #0066cc 1%, #669900 99%);
+    font-size:20px;
+    width:330px;
+}
+div.contentMod5{
+    width: 180px;
+    margin: 0;
+    height:400px;
+    float:left;
+    background:#00cc99;
+    font-size:15px;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+.contentMod5:hover{
+    background: linear-gradient(to right, #669900 4%, #00cc99 85%);
+    font-size:20px;
+    width:300px;
+}
+div.contentMod6{
+    width: 200px;
+    margin: 0;
+    height:400px;
+    float:left;
+    background:#cccccc;
+    font-size:15px;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+.contentMod6:hover{
+    background: linear-gradient(to right, #00cc99 0%, #cccccc 88%);
+    font-size:20px;
+    width:300px;
+}
+
+div.contentBelowHeader {
+    margin-top:70px;
+}
+div.contentBorder{
+    width:100%;
+    background-color:#1a1a1a;
+    height:400px;
+    margin-left:250px;
+}
+div.contentModLeft{
+    width:100%;
+    background-color:#cccccc;
+    position:relative;
+    float:left;
+    height:400px;
+}
+body{
+    background-color:#999999;
+    margin: 0; height: 100%; overflow: hidden
+}
+
+button.mod{
+    padding: 0;
+    border: none;
+    background: none;
+    position:center;
+    float:right;
+    width:100px;
+    height:50px;
+    background: linear-gradient(to bottom, #1a1a1a 20%, #999999 101%);
+    color:#cccccc;
+    font-size:14px;
+}
+button.mod:hover{
+    background: linear-gradient(to bottom, #1a1a1a 46%, #999999 101%);
+    color:white;
+}
+
+
+h4 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+</style>
+
+<body>
+    <div>
+    <div class='header'>
+        <div class='LeftNotch'>
+
+        </div>
+        <div class='nextToNotch'>
+            <div class='menuHeader'>
+                <form action="{{ 'headtest.html' }}">
+                    <button class='mod'>sign out</button>
+                </form>
+            </div>
+            <div class='menuHeader'>
+                <button class='mod'>_slot3</button>
+            </div>
+            <div class='menuHeader'>
+                <button class='mod'>_slot2</button>
+            </div>
+            <div class='menuHeader'>
+                <form action="{{ 'red.html' }}">
+                    <button class='mod' onclick=''>home</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class='contentBelowHeader'>
+        </div>
+        <div class='contentModLeft'>
+        <div class='contentBorder'>
+        <div class='contentMod1'>
+            <h3>{{ datas.0.1 }}</h3>
+            <h4>{{ datas.1.0.0 }} </h4>
+            <h1>{{ datas.0.3 }}</h1>
+        </div>
+        <div class='contentMod2'>
+            <h3>{{ datas.0.4 }}</h3>
+            <h4>{{ datas.1.1.0 }} </h4>
+            <h1>{{ datas.0.6 }}</h1>
+        </div>
+        <div class='contentMod3'>
+            <h3>{{ datas.0.7 }}</h3>
+            <h4>{{ datas.1.2.0 }} </h4>
+            <h1>{{ datas.0.9 }}</h1>
+        </div>
+        <div class='contentMod4'>
+            <h3>{{ datas.0.10 }}</h3>
+            <h4>{{ datas.1.3.0 }} </h4>
+            <h1>{{ datas.0.12 }}</h1>
+        </div>
+        <div class='contentMod5'>
+            <h3>{{ datas.0.13 }}</h3>
+            <h4>{{ datas.1.4.0 }} </h4>
+            <h1>{{ datas.0.15 }}</h1>
+        </div>
+        <div class='contentMod6'>
+            <h3>{{ datas.0.16 }}</h3>
+            <h4>{{ datas.1.5.0 }} </h4>
+            <h1>{{ datas.0.18 }}</h1>
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+        
+</body>
+</html>

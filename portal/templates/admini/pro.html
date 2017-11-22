@@ -1,0 +1,59 @@
+{% block content %}
+{% load staticfiles %}
+<!DOCTYPE html>
+    <head>
+        <title>Index</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+
+<style>
+    html,body{
+        background: #f1f1f1;
+        font-family: 'Merriweather', sans-serif;
+
+    }
+    div.welc{
+        text-align:center;
+        margin-top:20%;
+    }
+    a.defaul{
+        text-decoration:none;
+        color:orange;
+        padding:10px;
+    }
+
+a.defaul:hover{
+    background-color:orange;
+    color:white;
+    
+    
+}
+a.brkr{
+    color:orange;
+}
+div.lnk{
+    margin-top:5%;
+}
+
+
+</style>
+
+
+<body>
+
+    
+    <div class="welc">
+    <h1>Welcome</h1>
+    <div class="lnk">
+    <a class="defaul" href="{{ 'log' }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Student&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a class="brkr">|</a>
+    <a class="defaul" href="{{ 'ta' }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teacher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a class="brkr">|</a>
+    <a class="defaul" href="{{ 'adm' }}"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <br>
+    </div>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

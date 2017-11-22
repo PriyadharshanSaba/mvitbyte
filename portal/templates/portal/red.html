@@ -1,14 +1,249 @@
 {% block content %}
+{% load staticfiles %}
 <!DOCTYPE html>
     <head>
-        <title>Welcome</title>
-    </head>
+        <title>Welcome,{{ datas.0.0 }}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript">
+            
+            function checkEmpty(){
+                var arr = {{ datas.1 }}
+                if(arr>= 1)
+                {
+                    
+                    $("a[href='###']").attr('href', "{{ 'notes_ta.html' }}");
+                }
+                else
+                {
+                    alert("No Notes Available!");
+                    $("a[href='###']").attr('href', "{{ '#' }}");
+                }
+            };
+        
+        </script>
+        
 
-        <p>{{ name.0 }}</p>
-    <a href="{{ 'attend.html' }}">Attendance</a>
-    <br><br>
-    <a href="{{ 'putmarks.html' }}">Sem 4 marks</a>
-    <br><br>
-    <a href="{{ 'headtest.html' }}">Sign Out</a>
+<style>
+    html,body{
+        background: #f1f1f1;
+        font-family: 'Merriweather', sans-serif;
+        
+    }
+.welc{
+    text-align:center;
+    margin-top:20%;
+}
+a.defaul{
+    font-size:18px;
+    text-decoration:none;
+    color:orange;
+    padding:7px 30px;
+    
+}
+
+h1,a{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+h1{
+    color:#666666;
+}
+a.defaul:hover{
+    background-color:orange;
+    color:white;
+    
+    
+    
+}
+a.brkr{
+    color:orange;
+}
+div.lnk{
+    margin-top:5%;
+    display: inline-block;
+}
+div.actMenu{
+    display:inline-block;
+}
+
+
+
+
+
+
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+
+.dropbtn1 {
+    text-decoration:none;
+    color:orange;
+    padding:7px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn1:hover, .dropbtn1:focus {
+    background-color:orange;
+    color:white;
+}
+.dropbtn2 {
+    text-decoration:none;
+    color:orange;
+    padding:7px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn2:hover, .dropbtn2:focus {
+    background-color:orange;
+    color:white;
+}
+
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content-1 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content-1 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content-2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content-2 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+    <div class="welc">
+        <h1>Welcome, {{ datas.0.0 }}</h1>
+    <div class="lnk">
+    
+        <div class="actMenu"> <a class="defaul" href="{{ 'attend_preRefresh.html' }}">Attendance</a><a class="brkr">|</a> </div>
+        <div class="actMenu"> <a class="dropbtn1" onclick="markDrop()"  href="{{ '##' }}">Marks</a><a class="brkr">|</a>
+            <div class="dropdown">
+                <!-- Marks       -->
+                <div id="marDropdown" class="dropdown-content-1">
+                    <a href="{{ '#' }}">Internals</a>
+                    <a href="{{ 'putmarks.html' }}">Previous Sems</a>
+                </div>
+            </div>
+        </div>
+        <div class="actMenu"><a class="defaul" onclick="checkEmpty()" href="{{ '###' }}">Notes</a><a class="brkr">|</a></div>
+        <div class="actMenu"><a onclick="accDrop()" class="dropbtn2" href="{{ '##' }}">Account</a>
+            <div class="dropdown">
+                <!--  Account      -->
+                <div id="myDropdown" class="dropdown-content-2">
+                    <a href="{{ 'profile_settings' }}">Settings</a>
+                    <a href="{{ 'headtest.html' }}">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+</div>
+    
+    <script>
+        /* When the user clicks on the button,
+         toggle between hiding and showing the dropdown content */
+    function accDrop() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+
+    function markDrop() {
+        document.getElementById("marDropdown").classList.toggle("show");
+    }
+    
+    
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn1')) {
+            
+            var dropdowns = document.getElementsByClassName("dropdown-content-1");
+            var i2;
+            for (i2 = 0; i2 < dropdowns.length; i2++) {
+                var openDropdown = dropdowns[i2];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+        if (!event.target.matches('.dropbtn2')) {
+            
+            var dropdowns = document.getElementsByClassName("dropdown-content-2");
+            var i2;
+            for (i2 = 0; i2 < dropdowns.length; i2++) {
+                var openDropdown = dropdowns[i2];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+        
+    }
+
+    
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
 
 {% endblock %}

@@ -1,0 +1,56 @@
+{% block content %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+    <head>
+        <title>Notes</title>
+    </head>
+
+<style>
+
+div.note{
+    width:300px;
+    height:300px;
+    display:inline-block;
+    text-align:center;
+    border: orange 2px solid;
+    margin:5px;
+}
+div.note:hover{
+    background-color:orange;
+}
+div.note:hover a{
+    color:white;
+    font-weight:bold;
+}
+a.note{
+    text-align:center;
+    text-decoration: none;
+    color:orange;
+    font-size:20px;
+    
+}
+div.in-notes{
+    margin-top:50%;
+    font-weight:bold;
+}
+
+</style>
+
+<body>
+    <div>
+    {% for i in datas %}
+    <div class="note">
+        
+    <a class="note" href="{{ i.1 }}">
+        <div class="in-notes">{{ i.0 }}</div>
+    </a>
+    </div>
+    {% endfor %}
+    </div>
+</body>
+
+</html>
+
+
+{% endblock %}
