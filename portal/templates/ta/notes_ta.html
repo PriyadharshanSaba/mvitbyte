@@ -8,31 +8,43 @@
 
 <style>
 
+html, body {
+    background: #f1f1f1;
+    font-family: 'Merriweather', sans-serif;
+    padding: 1em;
+}
+
 div.note{
-    width:300px;
-    height:300px;
+    width:230px;
+    height:200px;
     display:inline-block;
     text-align:center;
-    border: orange 2px solid;
-    margin:5px;
+    border: #e6ac00 2px solid;
+    margin:30px 15px;
+    background-color:#e6ac00;
 }
 div.note:hover{
-    background-color:orange;
+    background-color:#e6ac00;
 }
 div.note:hover a{
-    color:white;
+    color:#e6ac00;
     font-weight:bold;
 }
 a.note{
     text-align:center;
     text-decoration: none;
-    color:orange;
+    color:#e6ac00;
     font-size:20px;
-    
 }
 div.in-notes{
     margin-top:50%;
     font-weight:bold;
+}
+
+span.a{
+    background-color:#fcfcfc;
+    padding:10px;
+    float:left;
 }
 
 </style>
@@ -43,7 +55,7 @@ div.in-notes{
     <div class="note">
         
     <a class="note" href="{{ i.1 }}">
-        <div class="in-notes">{{ i.0 }}</div>
+        <div class="in-notes"><span class="a">{{ i.0 }}</span></div>
     </a>
     </div>
     {% endfor %}

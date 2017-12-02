@@ -117,7 +117,6 @@ div.front{
     padding: 10px 0px;
 }
 .centrButn{
-    border: solid #a8a8a8 2px;
     padding: 10px 0px;
     width:70%;
     text-align:center;
@@ -149,6 +148,10 @@ div.ftr{
     width:100%;
 }
 
+.uplo{
+    margin-left:14%;
+}
+
 
 
 </style>
@@ -163,7 +166,7 @@ div.ftr{
     <div class="front">
 <form class="cf" method="post" enctype="multipart/form-data" action="{{ 'succs.html' }}">{% csrf_token %}
         <input type="text" class="centr" id="input-name" placeholder="File Name" name="filxname" required><br><br>
-        <input type="file" class="centrButn" id="input-file" name="myfile" placeholder="upload file"><br><br>
+        <input type="file" class="uplo" id="input-file" name="myfile" placeholder="upload file"><br><br>
         <button type="submit" value="Submit" id="input-submit">Upload</button>
 </form><br><br>
 </div>

@@ -56,5 +56,6 @@ def login_redirection(request):
     else:
         return render(request,'admini/headtest_admini_incorrect.html')
 
-
+def aboutAdm(request):
+    return render(request,'admini/about.html')
 

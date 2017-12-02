@@ -16,6 +16,14 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
                 <link rel="stylesheet" type="text/css" href="{% static 'css/ta_css/headtest_ta.css' %}">
                 <script type="text/javascript" language="JavaScript" src="{% static 'js/USNPSW.js' %}"></script>
+                
+        <script>
+            var x = {{ exists }}
+            if(x==1)
+            {
+                alert("Username already exists");
+            }
+        </script>
     </head>
 
 <!--    <body class="body" style="background-color:#f6f6f6">-->
@@ -66,11 +74,14 @@
             <br><br>
             <div class="newregform">
                 
-            <form method="post" action="{{ 'registerNewStudent.html' }}">
+            <form method="post" action="{{ 'newTeacher.html' }}">
                 {% csrf_token %}
                 <h2 style="align:center;font-family:Lucida Console;font-style:italic">Hola!</h2>
-                <input type="text" placeholder="USN" name="newusn" id="newusn" required>
-                <input type="password" placeholder="Password" name="newpasw" id="pasw" required>
+                <input type="text" placeholder="Name" name="teachaName" id="new" required>
+                <input type="password" placeholder="Password" name="teachaNewpasw" id="pasw" required>
+                <input type="text" placeholder="Mail-ID" name="teachaMail" id="mail" required>
+                <input type="number" placeholder="Phone" name="teachaPh" id="phone" required><br><br>
+                    <p>Gender</p><input type="radio" name="teachGender" value="10" required>&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="teachGender" value="11" required>&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="teachGender" value="00" required>&nbsp;Other<br>
             </div>
             <br><br><br><br><br><br><br><br><br><br><br>
         </div>

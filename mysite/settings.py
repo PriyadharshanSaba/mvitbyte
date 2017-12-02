@@ -89,6 +89,18 @@ DATABASES = {
 }
 
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'studentportal',
+#        'USER': 'root',
+#        'PASSWORD': 'Rocky@2009',
+#        'HOST': 'localhost',
+#        'PORT': '',
+#    }
+#}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 

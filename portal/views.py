@@ -8,7 +8,7 @@ import re
 import mechanize
 from pyscri import setUpNewStudentData,check_login_details,putmarksintodb,putMarksCustomSem
 from pyscri import studoinfo,verificaMail,detFromDB,addi
-from pyscri.teacha.FILx import fileDATA
+from pyscri.teacha import teacha
 import csv
 import numpy
 

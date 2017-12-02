@@ -13,6 +13,7 @@ from . import views_ta
 urlpatterns = [
                url(r'^admin/', admin.site.urls),
                url(r'^pro$', views_admini.product, name='product'),
+               url(r'^about', views_admini.aboutAdm),
                
                url(r'^log$', views.index , name='index'),
                url(r'^red.html$', views.red , name='red'),
@@ -33,7 +34,7 @@ urlpatterns = [
                url(r'^profile_settings$', views.profile_settings, name='settings'),
               
                
-               url(r'^ta', views_ta.teacherlog, name='ta log'),
+               url(r'^ta$', views_ta.teacherlog, name='ta log'),
                url(r'^home_ta.html$', views_ta.teacherHome, name='home'),
                url(r'^parsing_error.html$', views_ta.error, name='error'),
                url(r'^succs.html$',views_ta.simple_upload, name='suc'),
@@ -42,6 +43,7 @@ urlpatterns = [
                url(r'^delNotesMod.html$', views_ta.deleteNodes, name='delete notes'),
                url(r'^delRequest.html$', views_ta.deleteRequest, name='after delete notes'),
                url(r'^notes_ta.html$', views_ta.notes, name='notes'),
+               url(r'^newTeacher.html$', views_ta.newReg),
 
                
                url(r'^adm$', views_admini.adminiHome, name='admin home'),

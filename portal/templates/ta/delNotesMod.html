@@ -3,47 +3,110 @@
 
 <!DOCTYPE html>
     <head>
-        <title>Delete Notes</title>
+        <title>Notes</title>
     </head>
 
 <style>
-.welcomeNote{
-        font-family: Arial, Helvetica, sans-serif;
-        color: #ff6600;
-        font-size:25px;
-}
-a{
-        text-decoration:none;
-        color:#006699;
 
-}
-h4.modules {
-    font-family: Arial, Helvetica, sans-serif;
-}
-div.front{
-    margin-left:40%;
+html, body {
+    background: #f1f1f1;
+    font-family: 'Merriweather', sans-serif;
+    padding: 1em;
 }
 
-    
-    
+div.note{
+    width:230px;
+    height:200px;
+    display:inline-block;
+    text-align:center;
+    border: #e6ac00 2px solid;
+    background-color:#e6ac00;
+}
+div.note:hover{
+    background-color:#e6ac00;
+}
+div.note:hover a{
+    color:#e6ac00;
+    font-weight:bold;
+}
+a.note{
+    text-align:center;
+    text-decoration: none;
+    color:#e6ac00;
+    font-size:20px;
+}
+div.in-notes{
+    margin-top:50%;
+    font-weight:bold;
+}
+
+span.a{
+    background-color:#fcfcfc;
+    padding:10px;
+    float:left;
+}
+
+input.delete-check{
+    float:left;
+    margin-left:7%;
+}
+
+div.out-of-note{
+    width:232px;
+    height:230px;
+    display:inline-block;
+    text-align:center;
+    border: #e6ac00 2px solid;
+    margin:30px 15px;
+    background-color:#fcfcfc;
+}
+
+button.del{
+    width:400px;
+    height:40px;
+    background-color:#999999;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+div.ft{
+    margin-top:10%;
+
+}
+
+
 </style>
 
 <body>
     <div>
-        <div class="front">
-    <br><br><br><br>
+    {% for i in datas %}
+    <div class="out-of-note">
+    <div class="note">
+        
+    <a class="note" href="{{ i.1 }}">
+        <div class="in-notes">
+            <span class="a">{{ i.0 }}</span>
+        </div>
+        
+        
+    </a>
+    </div>
     <form method="post" action="{{ 'delRequest.html' }}">
         {% csrf_token %}
-        {% for i in datas %}
-        <input type="checkbox" placeholder="File Name" name="files" value="{{ i.0 }}">{{ i.0 }}<br><br>
-        {% endfor %}
-            <button type="submit">Delete</button>
-    </form><br><br>
+        <input class="delete-check" type="checkbox" placeholder="File Name" name="files" value="{{ i.0 }}">
     </div>
+    {% endfor %}
+    
     </div>
     
-
+    <div class="ft">
+    <center><button class="del" type="submit">Delete</button></center>
+    </form>
+    </div>
 </body>
+
 </html>
+
 
 {% endblock %}
