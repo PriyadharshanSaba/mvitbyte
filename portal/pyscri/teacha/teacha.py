@@ -2,6 +2,10 @@ import mysql.connector
 import os
 import os.path
 
+def DBConnection():
+    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cursor=cn.cursor()
+    return cn,cursor
 
 def filePathIntoDB(nam,path):
     cn = mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
@@ -39,7 +43,6 @@ def deleteFiles(file_names):
     root_pth = root_pth.split("/portal/")[0]
     cn =mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
     cursor=cn.cursor()
-    #checkIT="DELETE FROM FILX WHERE FILNAME= %(n)s"
     checkIT="SELECT PATH FROM FILX WHERE FILNAME= %(n)s"
     checkDB = "DELETE FROM FILX WHERE FILNAME= %(n)s"
     for fn in file_names:
@@ -51,3 +54,29 @@ def deleteFiles(file_names):
         cn.commit()
         os.remove(str(fpath))
     return "okay"
+
+
+def namCap(name):
+    spli = name.split(" ")
+    name=""
+    for i in spli:
+        name+= i[0].upper()+i[1:]+" "
+    return name
+
+def checkExisting(name):
+    name = namCap(name)
+    db =DBConnection()
+    que = "SELECT * FROM TEACHA.REGISTER WHERE USERNAME=%(n)s"
+    checkDATA={'n':name}
+    db[1].execute(que,checkDATA)
+    x = db[1].fetchone()
+    if x==None:
+        return 0
+    else:
+        return 1
+
+
+
+
+
+
