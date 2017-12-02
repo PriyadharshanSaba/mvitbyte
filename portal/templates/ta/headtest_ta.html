@@ -16,6 +16,18 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
                 <link rel="stylesheet" type="text/css" href="{% static 'css/ta_css/headtest_ta.css' %}">
                 <script type="text/javascript" language="JavaScript" src="{% static 'js/USNPSW.js' %}"></script>
+                
+        <script>
+            var x = {{ exist }}
+            if(x==1)
+            {
+                alert("Username already exists");
+            }
+            else if(x==2)
+            {
+                alert("Incorrect Username/Password");
+            }
+        </script>
     </head>
 
 <!--    <body class="body" style="background-color:#f6f6f6">-->
@@ -45,7 +57,7 @@
         <div class="logg">
         <div>
         <form method="post" action="{{ 'home_ta.html' }}">
-            <input type="text" placeholder="Staff ID" name="staffid" id="loginID" required>{% csrf_token %}
+            <input type="text" placeholder="Username" name="staffname" id="loginID" required>{% csrf_token %}
             <input type="password" placeholder="Password" name="psw" required>{% csrf_token %}
             <button type="submit" class="subm">Sign in</button><br>
             <p style="text-align:center;"><font size="2"><a id ="myBtn" style="color:#4d4d4d;text-decoration:none;">Register</a></font></p>
@@ -66,11 +78,15 @@
             <br><br>
             <div class="newregform">
                 
-            <form method="post" action="{{ 'registerNewStudent.html' }}">
+            <form method="post" action="{{ 'newTeacher.html' }}">
                 {% csrf_token %}
                 <h2 style="align:center;font-family:Lucida Console;font-style:italic">Hola!</h2>
-                <input type="text" placeholder="USN" name="newusn" id="newusn" required>
-                <input type="password" placeholder="Password" name="newpasw" id="pasw" required>
+                <input type="text" placeholder="Name" name="teachaName" id="new" required>
+                <input type="password" placeholder="Password" name="teachaNewpasw" id="pasw" required>
+                <input type="text" placeholder="Mail-ID" name="teachaMail" id="mail" required>
+                <input type="number" placeholder="Phone" name="teachaPh" id="phone" required><br><br>
+                    <p>Gender</p>
+                    <input type="radio" name="teachaGender" value="10" required>&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="teachaGender" value="11" required>&nbsp;Female&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="teachaGender" value="00" required>&nbsp;Other<br>
             </div>
             <br><br><br><br><br><br><br><br><br><br><br>
         </div>

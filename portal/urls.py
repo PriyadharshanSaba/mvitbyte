@@ -42,6 +42,7 @@ urlpatterns = [
                url(r'^delNotesMod.html$', views_ta.deleteNodes, name='delete notes'),
                url(r'^delRequest.html$', views_ta.deleteRequest, name='after delete notes'),
                url(r'^notes_ta.html$', views_ta.notes, name='notes'),
+               url(r'^newTeacher.html$', views_ta.newReg, name='Registration'),
 
                
                url(r'^adm$', views_admini.adminiHome, name='admin home'),

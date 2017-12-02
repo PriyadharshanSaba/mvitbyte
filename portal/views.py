@@ -8,7 +8,7 @@ import re
 import mechanize
 from pyscri import setUpNewStudentData,check_login_details,putmarksintodb,putMarksCustomSem
 from pyscri import studoinfo,verificaMail,detFromDB,addi
-from pyscri.teacha.FILx import fileDATA
+from pyscri.teacha import teacha
 import csv
 import numpy
 
@@ -58,7 +58,7 @@ def login_redirection_stu(request):
 def red(request):
     current_usn = request.session['cur_usn']
     name=detFromDB.getName(current_usn)
-    fetched = fileDATA.fetchFilxPath()
+    fetched = teacha.fetchFilxPath()
     return render(request,'portal/red.html',{'datas':[name,len(fetched)]})
 
 
@@ -229,7 +229,7 @@ def verification(request):
 
 
 def notes(request):
-    fetched = fileDATA.fetchFilxPath()
+    fetched = teacha.fetchFilxPath()
     return render(request,'portal/notes.html',{'datas':fetched})
 
 def profile_settings(request):

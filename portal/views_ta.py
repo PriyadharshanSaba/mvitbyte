@@ -9,53 +9,84 @@ import mysql.connector
 from django.template import RequestContext
 import re
 import mechanize
-from pyscri import check_admin_login,putMarksCustomSem
+from pyscri import check_admin_login,putMarksCustomSem,connDB
 import csv
 from .forms import UploadFileForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from pyscri.teacha.FILx import fileDATA
+from pyscri.teacha import teacha
 
 
 
 def teacherlog(request):
-    return render(request,'ta/headtest_ta.html')
+    return render(request,'ta/headtest_ta.html',{'datas':None})
 
 
 def teacherHome(request):
     try:
-        staff_id = request.POST['staffid']
-        staff_id=staff_id.upper()
-        request.session['cur_usn'] = staff_id
+        staff_nam = request.POST['staffname']
+        staff_nam=staff_nam.upper()
+        request.session['cur_usn'] = staff_nam
         staff_pass=request.POST['psw']
         request.session['session_pass'] = staff_pass
     except:
-        staff_id=request.session['cur_usn']
+        staff_nam=request.session['cur_usn']
         staff_pass=request.session['session_pass']
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
-    cursor=cn.cursor()
-    checkIT="SELECT USERNAME FROM REGISTER WHERE STAFFID= %(uid)s AND PASS=%(pass)s"
-    checkDATA={'uid':staff_id,'pass':staff_pass}
-    cursor.execute(checkIT,checkDATA)
+    db=teacha.DBConnection();
+    checkIT="SELECT TOKEN FROM TEACHA.REGISTER WHERE USERNAME= %(uid)s AND PASS=%(pass)s"
+    checkDATA={'uid':staff_nam,'pass':staff_pass}
+    db[1].execute(checkIT,checkDATA)
     try:
-        log = cursor.fetchone()
+        log = db[1].fetchone()
         request.session['cur_user'] = log
-        if log != None:
-            return render(request,'ta/home_ta.html',{'datas':[[log]]})
-        else:
-            return render(request,'ta/parsing_error.html')
+        checkIT="SELECT SALUT,USERNAME FROM TEACHA.TEACHA_DET WHERE USERNAME= %(uid)s"
+        checkDATA={'uid':teacha.namCap(staff_nam)}
+        db[1].execute(checkIT,checkDATA)
+        sal= db[1].fetchone()
+        return render(request,'ta/home_ta.html',{'datas':[sal[0],sal[1]]})
     except:
-        return render(request,'ta/parsing_error.html')
+        return render(request,'ta/headtest_ta.html',{'exist':2})
 
-        #except:
-#return render(request,'ta/parsing_error.html', {'datas':[staff_id,staff_pass]})
+
+def newReg(request):
+    newUser = request.POST['teachaName']
+    db=teacha.DBConnection();
+    ce = teacha.checkExisting(newUser)
+    sg= request.POST['teachaGender']
+    if sg == '10':
+        gend="Mr."
+    elif sg=='11':
+        gend="Ms."
+    else:
+        gend="Mx."
+    inse="SELECT MAX(TOKEN) FROM TEACHA.REGISTER"
+    db[1].execute(inse)
+    token=db[1].fetchone()[0]
+    if token == None:
+        token=1
+    else:
+        token= token+ 1
+    if ce==0:
+        inse ="INSERT INTO TEACHA.REGISTER VALUES (%(un)s,%(p)s,%(to)s)"
+        idat = {'un': newUser.upper(),'p':request.POST['teachaNewpasw'],'to':token}
+        db[1].execute(inse,idat)
+        db[0].commit()
+        inse="INSERT INTO TEACHA.TEACHA_DET VALUES (%(m)s,%(p)s,%(sal)s,%(usr)s,%(to)s)"
+        idat={'m':request.POST['teachaMail'],'p':request.POST['teachaPh'],'sal':gend,'usr':teacha.namCap(newUser),'to':token}
+        db[1].execute(inse,idat)
+        db[0].commit()
+        return render(request,'ta/headtest_ta.html')
+    else:
+        return render(request,'ta/headtest_ta.html',{'exist':1})
+
+
 
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         filxNam = request.POST['filxname']
-        #yes = fileDATA.checkIfExists(myfile.name)
+        #yes = teacha.checkIfExists(myfile.name)
         yes = 0
         if yes != 1:
             fs = FileSystemStorage(location='media/')
@@ -65,13 +96,13 @@ def simple_upload(request):
             filxNam = str(filxNam)+"."+str(fext)
             filename = fs.save(filxNam, myfile)
             uploaded_file_url = fs.url(filename)
-            fileDATA.filePathIntoDB(filename,uploaded_file_url)
+            teacha.filePathIntoDB(filename,uploaded_file_url)
             return render(request, 'ta/home_ta.html', {'datas':[[request.session['cur_user']]]})
     return render(request, 'ta/parsing_error.html')
 
 
 def deleteNodes(request):
-    fetched = fileDATA.fetchFilxPath()
+    fetched = teacha.fetchFilxPath()
     request.session['file_list_length'] = len(fetched)
         # if len(fetched) == 0:
         #return render(request, 'ta/delNotesMod.html',{'datas':[request.session['cur_user']]})
@@ -81,16 +112,16 @@ def deleteNodes(request):
 def deleteRequest(request):
     len = request.session['file_list_length']
     file_name_list = request.POST.getlist('files')
-    x =fileDATA.deleteFiles(file_name_list)
+    x =teacha.deleteFiles(file_name_list)
     return render(request, 'ta/delRequest.html',{'datas':[file_name_list,len,x]})
 
 def notes(request):
-    fetched = fileDATA.fetchFilxPath()
+    fetched = teacha.fetchFilxPath()
     return render(request, 'ta/notes_ta.html',{'datas':fetched})
 
 
 def upload_form(request):
-    x = fileDATA.fetchFilxPath()
+    x = teacha.fetchFilxPath()
     return render(request, 'ta/upload_files.html',{'datas':len(x)})
 
 def succs(request):
