@@ -27,7 +27,7 @@ def teacherHome(request):
     try:
         staff_nam = request.POST['staffname']
         staff_nam=staff_nam.upper()
-        request.session['cur_usn'] = staff_nam
+        request.session['cur_usn'] = staff_nam.upper()
         staff_pass=request.POST['psw']
         request.session['session_pass'] = staff_pass
     except:
@@ -143,5 +143,40 @@ def error(request):
 
 def goBack(request):
     return render(request,'ta/headtest_ta.html')
+
+def profile_settings(request):
+    return render(request,'ta/profile_settings_ta.html',{'datas':None})
+
+def changePassword(request):
+    db=connDB.connect()
+    que="SELECT * FROM TEACHA.REGISTER WHERE USERNAME=%(uid)s AND PASS=%(np)s"
+    dat={'np':request.POST['curPass'],'uid':request.session['cur_usn']}
+    db[1].execute(que,dat)
+    if db[1].fetchone()!=None:
+        if request.POST['curPass'] == request.POST['newPass']:
+            return render(request,'ta/profile_settings_ta.html',{'datas':1})
+        else:
+            que="UPDATE TEACHA.REGISTER SET PASS=%(np)s WHERE USERNAME=%(uid)s"
+            dat={'np':request.POST['newPass'],'uid':request.session['cur_usn']}
+            db[1].execute(que,dat)
+            db[0].commit()
+            return render(request,'ta/profile_settings_ta.html',{'datas':0})
+    else:
+        return render(request,'ta/profile_settings_ta.html',{'datas':2})
+
+def changeMail(request):
+    db=connDB.connect()
+    que="SELECT * FROM TEACHA.REGISTER WHERE USERNAME=%(uid)s AND PASS=%(np)s"
+    dat={'np':request.POST['entPass'],'uid':request.session['cur_usn']}
+    db[1].execute(que,dat)
+    if db[1].fetchone()!=None:
+        que="UPDATE TEACHA.TEACHA_DET SET MAIL=%(np)s WHERE USERNAME=%(uid)s"
+        dat={'np':request.POST['newMail'],'uid':request.session['cur_usn']}
+        db[1].execute(que,dat)
+        db[0].commit()
+        return render(request,'ta/profile_settings_ta.html',{'datas':0})
+    else:
+        return render(request,'ta/profile_settings_ta.html',{'datas':2})
+
 
 
