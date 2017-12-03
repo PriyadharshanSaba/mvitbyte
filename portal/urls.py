@@ -31,6 +31,8 @@ urlpatterns = [
                url(r'^attend_preRefresh.html$', views.attendanceFromDBMS, name='attendance from DB'),
                url(r'^notes.html$', views.notes, name='notes'),
                url(r'^profile_settings$', views.profile_settings, name='settings'),
+               url(r'^changePassword$', views.changePassword, name='ChangePassword'),
+               url(r'^changeEmail$', views.changeMail, name='ChangeMail-ID'),
               
                
                url(r'^ta', views_ta.teacherlog, name='ta log'),

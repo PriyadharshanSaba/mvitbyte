@@ -128,6 +128,7 @@ def deleteRequest(request):
 def notes(request):
     fetched = teacha.fetchFilxPath()
     return render(request, 'ta/notes_ta.html',{'datas':fetched})
+    
 
 
 def upload_form(request):

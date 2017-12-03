@@ -7,10 +7,11 @@ from django.template import RequestContext
 import re
 import mechanize
 from pyscri import setUpNewStudentData,check_login_details,putmarksintodb,putMarksCustomSem
-from pyscri import studoinfo,verificaMail,detFromDB,addi
+from pyscri import studoinfo,verificaMail,detFromDB,addi,connDB
 from pyscri.teacha import teacha
 import csv
 import numpy
+
 
 
 def index(request):
@@ -204,12 +205,6 @@ def welcomeNewRege(request):
     cursor.execute(checkIT,checkDATA)
     cn.commit()
     return render(request,'portal/new_reg_verfiy.html',{'datas':[x[0],regd]})
-#    except:
-#        try:
-#            setUpNewStudentData.deletePrior(newUSN)
-#            return render(request,'portal/error.html',{'datas':'deletePrior'})
-#        except:
-#            return render(request,'portal/error.html')
 
 
 def verifyUser(request):
@@ -233,7 +228,7 @@ def notes(request):
     return render(request,'portal/notes.html',{'datas':fetched})
 
 def profile_settings(request):
-    return render(request,'portal/profile_settings.html')
+    return render(request,'portal/profile_settings.html',{'datas':None})
 
 def errorStudentAcc(request):
     return render(request,'portal/error.html',{'datas':'errorStudentAcc'})
@@ -244,3 +239,41 @@ def signOut(request):
 
 def loadingRedirecting(request):
     return render(request,'portal/new_reg_verfiy.html')
+
+def changePassword(request):
+    db=connDB.connect()
+    usn=request.session['cur_usn']
+    que="SELECT * FROM studentportal.REGISTER WHERE USR_ID=%(uid)s AND USR_PSW=%(np)s"
+    dat={'np':request.POST['curPass'],'uid':usn}
+    db[1].execute(que,dat)
+    #print "data>>>" + str(cur.fetchone())
+    if db[1].fetchone()!=None:
+        if request.POST['curPass'] == request.POST['newPass']:
+            return render(request,'portal/profile_settings.html',{'datas':1})
+        else:
+            que="UPDATE studentportal.REGISTER SET USR_PSW=%(np)s WHERE USR_ID=%(uid)s"
+            dat={'np':request.POST['newPass'],'uid':usn}
+            db[1].execute(que,dat)
+            db[0].commit()
+            return render(request,'portal/profile_settings.html',{'datas':0})
+    else:
+        return render(request,'portal/profile_settings.html',{'datas':2})
+
+def changeMail(request):
+    db=connDB.connect()
+    usn=request.session['cur_usn']
+    que="SELECT * FROM studentportal.REGISTER WHERE USR_ID=%(uid)s AND USR_PSW=%(np)s"
+    dat={'np':request.POST['entPass'],'uid':usn}
+    db[1].execute(que,dat)
+    #print "data>>>" + str(cur.fetchone())
+    if db[1].fetchone()!=None:
+        que="UPDATE studentportal.STUD_DET SET MAIL=%(np)s WHERE STUD_USN=%(uid)s"
+        dat={'np':request.POST['newMail'],'uid':usn}
+        db[1].execute(que,dat)
+        db[0].commit()
+        return render(request,'portal/profile_settings.html',{'datas':0})
+    else:
+        return render(request,'portal/profile_settings.html',{'datas':2})
+
+
+
