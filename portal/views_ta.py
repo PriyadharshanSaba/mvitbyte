@@ -14,7 +14,8 @@ import csv
 from .forms import UploadFileForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from pyscri.teacha import teacha
+from pyscri.teacha import teacha,verificaMail
+
 
 
 
@@ -52,32 +53,41 @@ def newReg(request):
     newUser = request.POST['teachaName']
     db=teacha.DBConnection();
     ce = teacha.checkExisting(newUser)
-    sg= request.POST['teachaGender']
-    if sg == '10':
-        gend="Mr."
-    elif sg=='11':
-        gend="Ms."
+    if teacha.checkPHONE(request.POST['teachaPh'])==1:
+        if teacha.checkMAIL(request.POST['teachaMail'])==1:
+            sg= request.POST['teachaGender']
+            if sg == '10':
+                gend="Mr."
+            elif sg=='11':
+                gend="Ms."
+            else:
+                gend="Mx."
+            inse="SELECT MAX(TOKEN) FROM TEACHA.REGISTER"
+            db[1].execute(inse)
+            token=db[1].fetchone()[0]
+            if token == None:
+                token=1
+            else:
+                token= token+ 1
+            if ce==0:
+                inse ="INSERT INTO TEACHA.REGISTER VALUES (%(un)s,%(p)s,%(to)s)"
+                idat = {'un': newUser.upper(),'p':request.POST['teachaNewpasw'],'to':token}
+                db[1].execute(inse,idat)
+                db[0].commit()
+                inse="INSERT INTO TEACHA.TEACHA_DET VALUES (%(m)s,%(p)s,%(sal)s,%(usr)s,%(to)s)"
+                idat={'m':request.POST['teachaMail'],'p':request.POST['teachaPh'],'sal':gend,'usr':teacha.namCap(newUser),'to':token}
+                db[1].execute(inse,idat)
+                db[0].commit()
+                verificaMail.verfMail('000','Staff')
+                return render(request,'ta/headtest_ta.html')
+            else:
+                return render(request,'ta/headtest_ta.html',{'exist':1})
+
+        else:
+            return render(request,'ta/headtest_ta.html',{'exist':3})
     else:
-        gend="Mx."
-    inse="SELECT MAX(TOKEN) FROM TEACHA.REGISTER"
-    db[1].execute(inse)
-    token=db[1].fetchone()[0]
-    if token == None:
-        token=1
-    else:
-        token= token+ 1
-    if ce==0:
-        inse ="INSERT INTO TEACHA.REGISTER VALUES (%(un)s,%(p)s,%(to)s)"
-        idat = {'un': newUser.upper(),'p':request.POST['teachaNewpasw'],'to':token}
-        db[1].execute(inse,idat)
-        db[0].commit()
-        inse="INSERT INTO TEACHA.TEACHA_DET VALUES (%(m)s,%(p)s,%(sal)s,%(usr)s,%(to)s)"
-        idat={'m':request.POST['teachaMail'],'p':request.POST['teachaPh'],'sal':gend,'usr':teacha.namCap(newUser),'to':token}
-        db[1].execute(inse,idat)
-        db[0].commit()
-        return render(request,'ta/headtest_ta.html')
-    else:
-        return render(request,'ta/headtest_ta.html',{'exist':1})
+        return render(request,'ta/headtest_ta.html',{'exist':4})
+
 
 
 

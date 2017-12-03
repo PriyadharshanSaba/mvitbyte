@@ -4,35 +4,202 @@
 <!DOCTYPE html>
 <head>
     <title>Home</title>
+    <script>
+        /* When the user clicks on the button,
+         toggle between hiding and showing the dropdown content */
+    function accDrop() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    
+    function markDrop() {
+        document.getElementById("marDropdown").classList.toggle("show");
+    }
+    
+    
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn1')) {
+            
+            var dropdowns = document.getElementsByClassName("dropdown-content-1");
+            var i2;
+            for (i2 = 0; i2 < dropdowns.length; i2++) {
+                var openDropdown = dropdowns[i2];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+        if (!event.target.matches('.dropbtn2')) {
+            
+            var dropdowns = document.getElementsByClassName("dropdown-content-2");
+            var i2;
+            for (i2 = 0; i2 < dropdowns.length; i2++) {
+                var openDropdown = dropdowns[i2];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+        
+    }
+    
+    
+        </script>
 </head>
 
+
 <style>
-    .welcomeNote{
-        font-family: Arial, Helvetica, sans-serif;
-        color: #ff6600;
-        font-size:25px;
+    html,body{
+        background: #f1f1f1;
+        font-family: 'Merriweather', sans-serif;
+        
     }
-a.modules{
+.welc{
+    text-align:center;
+    margin-top:20%;
+}
+a.defaul{
+    font-size:18px;
     text-decoration:none;
-    color:#006699;
+    color:orange;
+    padding:7px 30px;
     
 }
-h4.modules {
-    font-family: Arial, Helvetica, sans-serif;
-}
-div.front{
-    text-align:center;
+
+h1,a{
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-</style>
+h1{
+    color:#666666;
+}
+a.defaul:hover{
+    background-color:orange;
+    color:white;
+    
+    
+    
+}
+a.brkr{
+    color:orange;
+}
+div.lnk{
+    margin-top:5%;
+    display: inline-block;
+}
+div.actMenu{
+    display:inline-block;
+}
+
+
+
+
+
+
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+
+.dropbtn1 {
+    text-decoration:none;
+    color:orange;
+    padding:7px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn1:hover, .dropbtn1:focus {
+    background-color:orange;
+    color:white;
+}
+.dropbtn2 {
+    text-decoration:none;
+    color:orange;
+    padding:7px 30px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn2:hover, .dropbtn2:focus {
+    background-color:orange;
+    color:white;
+}
+
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content-1 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content-1 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content-2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content-2 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+
+
+    </style>
+
+
 
 <body>
-    <div class="front"><br><br>
-        <h1 class='welcomeNote'>Welcome, {{datas.0}} {{datas.1}}<h1><br>
-        <h3><a class='modules' href={{ 'upload_files.html' }}>Upload Notes</a><h3><br>
-        <h3><a href=" {{ 'enterMarks.html' }}" class='modules'>Update Marks</a><h3><br>
-        <h3><a href=" {{ 'headtest_ta.html' }}" class='modules'>Sign Out</a><h3><br>
-    </div>
+
+    <div class="welc">
+        <h1>Welcome, {{datas.0}} {{datas.1}}</h1>
+        <div class="lnk">
+            
+            <div class="actMenu"> <a class="defaul" href="{{ 'upload_files.html' }}">Upload Notes</a><a class="brkr">|</a> </div>
+            <div class="actMenu"> <a class="dropbtn1" onclick="markDrop()"  href="{{ 'enterMarks.html' }}">Update Marks</a><a class="brkr">|</a></div>
+<!--            <div class="actMenu"><a class="defaul" onclick="checkEmpty()" href="{{ '###' }}">Notes</a><a class="brkr">|</a></div>-->
+            <div class="actMenu"><a onclick="accDrop()" class="dropbtn2" href="{{ '##' }}">Account</a>
+                <div class="dropdown">
+                    <!--  Account      -->
+                    <div id="myDropdown" class="dropdown-content-2">
+                        <a href="{{ 'profile_settings' }}">Settings</a>
+                        <a href="{{ 'headtest_ta.html' }}">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    
 </body>
 </html>
 </html>

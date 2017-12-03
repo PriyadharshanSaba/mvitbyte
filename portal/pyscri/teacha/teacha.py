@@ -1,6 +1,8 @@
 import mysql.connector
 import os
 import os.path
+import smtplib
+import verificaMail
 
 def DBConnection():
     cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
@@ -75,7 +77,28 @@ def checkExisting(name):
     else:
         return 1
 
+def checkMAIL(mail):
+    if mail=='0':
+        #verificaMail.verfMail('000','Staff')
+        return 1
+    else:
+        mail = mail.split("@")
+        if len(mail) < 1:
+            return 0
+        else:
+            if mail[len(mail)-1] == "sirmvit.edu":
+                #verificaMail.verfMail('000','Staff')
+                return 1
+            else:
+                return -1
 
+def checkPHONE(phone):
+    if phone=='0':
+        return 1
+    elif len(phone)==10:
+        return 1
+    else:
+        return 0
 
 
 
