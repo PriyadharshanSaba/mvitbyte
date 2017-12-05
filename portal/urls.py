@@ -33,6 +33,7 @@ urlpatterns = [
                url(r'^profile_settings$', views.profile_settings, name='settings'),
                url(r'^changePassword$', views.changePassword, name='ChangePassword'),
                url(r'^changeEmail$', views.changeMail, name='ChangeMail-ID'),
+               url(r'^static_attend_preRefresh$',views.static_attend_preRefresh,name='static attendance page'),
               
                
                url(r'^ta', views_ta.teacherlog, name='ta log'),

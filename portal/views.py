@@ -275,5 +275,30 @@ def changeMail(request):
     else:
         return render(request,'portal/profile_settings.html',{'datas':2})
 
-
-
+def static_attend_preRefresh(request):
+    usn = request.session['cur_usn']
+    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cursor=cn.cursor()
+    checkIT="SELECT * FROM ATTENDS WHERE USN_ID = %(uid)s"
+    checkDATA={'uid':usn}
+    cursor.execute(checkIT,checkDATA)
+    fet = cursor.fetchone()
+    ch = [0 for chi in range(0,6)]
+    ca = [0 for chi in range(0,6)]
+    cod = [0 for chi in range(0,6)]
+    j=0
+    for i in range (1,18,3):
+        if fet[i+1] == None or fet[i+2] == None or fet[i] == None:
+            cod[j] = 0
+            ca[j] = 0
+            ch[j] = 0
+        else:
+            cod[j] = fet[i]
+            ca[j] = fet[i+1]
+            ch[j] = fet[i+2]
+        j = j+1
+    cat=map(float,ca)
+    cheld=map(float,ch)
+    perAt=(numpy.round((numpy.divide(cat,cheld)),4))*100
+    xnam=studoinfo.subcodeToSubname(cod)
+    return render(request,'portal/static_attend_preRefresh.html',{'datas':[fet,ca,ch,cod,xnam,perAt]})
