@@ -301,4 +301,7 @@ def static_attend_preRefresh(request):
     cheld=map(float,ch)
     perAt=(numpy.round((numpy.divide(cat,cheld)),4))*100
     xnam=studoinfo.subcodeToSubname(cod)
-    return render(request,'portal/static_attend_preRefresh.html',{'datas':[fet,ca,ch,cod,xnam,perAt]})
+    mes=addi.generateMessage_attend(perAt,xnam)
+    return render(request,'portal/static_attend_preRefresh.html',{'datas':[fet,ca,ch,cod,xnam,perAt,mes]})
+
+
