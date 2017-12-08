@@ -23,42 +23,44 @@ def student(request):
 def login_redirection_stu(request):
     x_id = request.POST['usn']
     x_id=x_id.upper()
-    #request.session['cur_usn'] = x_id
-    checkLen = check_login_details.checkForID(x_id)
-    if checkLen == 1:
-        x_pass=request.POST['psw']
-        conn =psycopg2.connect(dbname='d1v03ol0gs21v5',
-                             user='mvsjgtxaoxwmgp',
-                             password='7b32ce61d22ce32052e233639448ab315708a2c78884b39932dc9ead1b26ef53',
-                             host='ec2-54-235-123-153.compute-1.amazonaws.com',
-                             port='5432')
-        cursor=conn.cursor()
-        checkIT="SELECT USR_ID, USR_PSW FROM student_reg WHERE USR_ID= %(uid)s"
-        checkDATA={'uid':'1MV15CS088'}
-        cursor.execute(checkIT,checkDATA)
-        acknowledgeUSER = cursor.fetchall()
-        try: #check for non registered users
-            if x_pass==acknowledgeUSER[0][1]:
-                verf_usr=check_login_details.verifica(x_id)
-                if verf_usr == 'Y':
-                    return render(request,'portal/login_redirection_stu.html',{'name':[x_id]})
-                else:
-                    checkIT="SELECT STUD_NAME FROM STUD_DET WHERE STUD_USN= %(susn)s"
-                    checkDATA={'susn':x_id.upper()}
-                    cursor.execute(checkIT,checkDATA)
-                    sFullName=cursor.fetchone()
-                    checkIT="SELECT REGD_MAIL FROM GENKY WHERE USN= %(sn)s"
-                    checkDATA={'sn':x_id.upper()}
-                    cursor.execute(checkIT,checkDATA)
-                    regdMail = cursor.fetchone()
-                    return render(request,'portal/new_reg_verfiy.html',{'datas':[sFullName[0],regdMail[0]]}) #regdMail[0]
-
-            else:
-                return render(request,'portal/headtest_incorrect.html')
-        except:
-            return render(request,'portal/headtest_incorrect.html',{'alert':["Incorrect USN or Password"]})
+#    request.session['cur_usn'] = x_id
+    #checkLen = check_login_details.checkForID(x_id)
+#    if checkLen == 1:
+    x_pass=request.POST['psw']
+    conn =psycopg2.connect(dbname='d1v03ol0gs21v5',user='mvsjgtxaoxwmgp',password='7b32ce61d22ce32052e233639448ab315708a2c78884b39932dc9ead1b26ef53',host='ec2-54-235-123-153.compute-1.amazonaws.com',port='5432')
+    cursor=conn.cursor()
+    checkIT="SELECT USR_PSW FROM student_reg WHERE USR_ID= %(uid)s"
+    checkDATA={'uid':x_id}
+    cursor.execute(checkIT,checkDATA)
+    acknowledgeUSER = cursor.fetchall()
+    #print x_pass.strip() == (acknowledgeUSER[0][0]).strip()
+    #print x_pass.strip()+">>"+acknowledgeUSER[0][0].strip()
+    if x_pass.strip()==(acknowledgeUSER[0][0]).strip():
+        return render(request,'portal/red.html',{'name':[x_id]})
     else:
-        return render(request,'portal/headtest_incorrect.html',{'alert':["This ID is not register"]})
+        return render(request,'admini/pro.html') #,{'name':[x_id]})
+#        try: #check for non registered users
+#            if x_pass==acknowledgeUSER[0][1]:
+#                verf_usr=check_login_details.verifica(x_id)
+#                if verf_usr == 'Y':
+#                    return render(request,'portal/login_redirection_stu.html',{'name':[x_id]})
+#                else:
+#                    checkIT="SELECT STUD_NAME FROM STUD_DET WHERE STUD_USN= %(susn)s"
+#                    checkDATA={'susn':x_id.upper()}
+#                    cursor.execute(checkIT,checkDATA)
+#                    sFullName=cursor.fetchone()
+#                    checkIT="SELECT REGD_MAIL FROM GENKY WHERE USN= %(sn)s"
+#                    checkDATA={'sn':x_id.upper()}
+#                    cursor.execute(checkIT,checkDATA)
+#                    regdMail = cursor.fetchone()
+#                    return render(request,'portal/new_reg_verfiy.html',{'datas':[sFullName[0],regdMail[0]]}) #regdMail[0]
+#
+#            else:
+#                return render(request,'portal/headtest_incorrect.html')
+#        except:
+#            return render(request,'portal/headtest_incorrect.html',{'alert':["Incorrect USN or Password"]})
+#    else:
+#        return render(request,'portal/headtest_incorrect.html',{'alert':["This ID is not register"]})
 
 
 
