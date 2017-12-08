@@ -23,7 +23,7 @@ def student(request):
 def login_redirection_stu(request):
     x_id = request.POST['usn']
     x_id=x_id.upper()
-    request.session['cur_usn'] = x_id
+    #request.session['cur_usn'] = x_id
     checkLen = check_login_details.checkForID(x_id)
     if checkLen == 1:
         x_pass=request.POST['psw']
@@ -64,7 +64,8 @@ def login_redirection_stu(request):
 
 #red.html
 def red(request):
-    current_usn = request.session['cur_usn']
+    current_usn = "pd"
+    #current_usn = request.session['cur_usn']
     #name=detFromDB.getName(current_usn)
     #fetched = teacha.fetchFilxPath()
     return render(request,'portal/red.html',{'datas':[[current_usn]]})#[name,len(fetched)]})
