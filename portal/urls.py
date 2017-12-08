@@ -11,9 +11,10 @@ from . import views_ta
 
 
 urlpatterns = [
-               url(r'^admin/', admin.site.urls),
+               url(r'^admin/', include(admin.site.urls)),
                url(r'^pro$', views_admini.product, name='product'),
-               url(r'$', views.index, name='main'),
+               url(r'^/$', views.index, name='main'),
+               url(r'^$', views.index, name='main'),
                
                url(r'^log$', views.student , name='index'),
                url(r'^red.html$', views.red , name='red'),
