@@ -1,9 +1,9 @@
-import mysql.connector
+import psycopg2
 import numpy as nu
 import addi
 
 def getName(usn):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT STUD_NAME FROM STUD_DET WHERE STUD_USN= %(uid)s"
     checkDATA={'uid':usn}
@@ -14,7 +14,7 @@ def getName(usn):
 
 def rangeMarks(branch,uusn):
     started = 0
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT USN FROM SEM4_2017_CBCS15"
     cursor.execute(checkIT)

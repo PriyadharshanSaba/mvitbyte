@@ -1,9 +1,9 @@
 import csv
-import mysql.connector
+import psycopg2
 
 
 
-cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
 cursor=cn.cursor()
 with open('datasets/CS_IV_SemMarks/cs_blr_iv.csv','r') as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')

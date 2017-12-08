@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
-import mysql.connector
+import psycopg2
 import re
 import mechanize
 
@@ -85,7 +85,7 @@ def setMarks(usn):
 
 def subcodeToSubname(code):
     nam = [0 for l in xrange(0,6)]
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT SUB_NAME FROM SUB_DET WHERE SUB_CODE=%(sc)s"
     for i in range (0,6):

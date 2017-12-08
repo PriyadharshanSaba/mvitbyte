@@ -5,7 +5,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
-import mysql.connector
+#import psycopg2
+import psycopg2
 from django.template import RequestContext
 import re
 import mechanize

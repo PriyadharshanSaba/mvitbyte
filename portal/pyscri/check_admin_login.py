@@ -1,9 +1,9 @@
-import mysql.connector
+import psycopg2
 
 
 def checkLoginInfo(uname,upass):
 #Checks if USN already exists
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='XADMIN')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='XADMIN')
     cursor=cn.cursor()
     checkIT="SELECT TRACEBACK FROM REGISTER WHERE USRNAM = %(id)s"
     checkDATA={ 'id':uname.lower() }
@@ -20,7 +20,7 @@ def checkLoginInfo(uname,upass):
 
 def fetchAdminName(user):
     #gets admin name
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='XADMIN')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='XADMIN')
     cursor=cn.cursor()
     getTrace = "SELECT TRACE FROM REGISTER WHERE USRNAM = %(username)s "
     checkDATA={ 'username': user.lower() }

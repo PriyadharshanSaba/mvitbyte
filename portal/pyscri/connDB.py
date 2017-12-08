@@ -1,6 +1,6 @@
-import mysql.connector
+import psycopg2
 
 def connect():
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     return cn,cursor

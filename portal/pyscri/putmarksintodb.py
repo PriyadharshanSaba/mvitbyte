@@ -1,5 +1,5 @@
 import csv
-import mysql.connector
+import psycopg2
 
 
 def putmar(usn):
@@ -22,7 +22,7 @@ def putmar(usn):
         return marks
 
 def getmar(usn):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT * FROM SEMIV WHERE USN = %(u)s"
     checkDATA={ 'u':usn.upper() }
@@ -37,7 +37,7 @@ def getmar(usn):
 
 def getSubNam(code):
     sub_nam= [None]*8
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     j=0
     for i in xrange (1,24,3):

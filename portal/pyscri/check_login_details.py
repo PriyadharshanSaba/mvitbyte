@@ -1,4 +1,4 @@
-import mysql.connector
+import psycopg2
 
 
 def checkForID(ID):
@@ -11,7 +11,7 @@ def checkForID(ID):
 
 def checkIfExists(ID):
 #Checks if USN already exists
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT USR_ID FROM REGISTER WHERE USR_ID= %(id)s"
     checkDATA={ 'id':ID }
@@ -23,7 +23,7 @@ def checkIfExists(ID):
 
 
 def verifica(usn):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT VERF FROM GENKY WHERE USN= %(id)s"
     checkDATA={ 'id':usn }

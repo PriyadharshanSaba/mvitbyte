@@ -1,11 +1,11 @@
 import csv
-import mysql.connector
+import psycopg2
 
 global att
 global asd
 
 def putmar(usn,sem):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     with open('portal/static/datasets/CS_IV_SemMarks/CS_IV_SemMarks.csv','r') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
@@ -25,7 +25,7 @@ def putmar(usn,sem):
 
 
 def checkDuplication(uid):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     a="SELECT USN FROM SEMIV WHERE USN = %(u)s"
     b={'u':uid.upper() }

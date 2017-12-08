@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from bs4 import BeautifulSoup
 import requests
-import mysql.connector
+import psycopg2
 import re
 import mechanize
 import random

@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from bs4 import BeautifulSoup
 import requests
-import mysql.connector
+import psycopg2
 import re
 import mechanize
 import random
@@ -107,7 +107,7 @@ def fetchAndInsert(usn_id):
         j=j+1
     #return name,num,subject_codelist,subject_attends
 
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     insert_userDAT="INSERT INTO STUD_DET VALUES (%(uid)s,%(uname)s,%(uphone1)s,%(uphone2)s,%(uphone3)s,%(umail)s)"
     usr_DATA={'uid':usn_id,'uname':student_name,'uphone1':num1,'uphone2':num2,'uphone3':num3,'umail':mail_id}
@@ -121,7 +121,7 @@ def fetchAndInsert(usn_id):
 
 
 def insertIntoRegister(usn,password):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     insert_userDAT="INSERT INTO REGISTER VALUES (%(uid)s,%(uname)s);"
     usr_DATA={'uid':usn,'uname':password}
@@ -130,7 +130,7 @@ def insertIntoRegister(usn,password):
     return
 
 def deletePrior(usn):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     insert_userDAT="DELETE FROM REGISTER WHERE USR_ID = %(u)s"
     usr_DATA={'u':usn.upper()}
@@ -140,7 +140,7 @@ def deletePrior(usn):
 
 
 def verifyCode(usn):    #from DB
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT GKEY FROM GENKY WHERE USN = %(uid)s"
     checkDATA={'uid':usn }
@@ -149,7 +149,7 @@ def verifyCode(usn):    #from DB
     return otp[0]
 
 def verifiHit(usn):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="UPDATE GENKY SET VERF = (%(ver)s) WHERE USN=%(uid)s"
     checkDATA={'ver':'X','uid':usn}
@@ -161,7 +161,7 @@ def verifiHit(usn):
 def generateMail(usn):
     xo = random.randint(1000,9999)
     ran = str(xo)
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="INSERT INTO GENKY (USN,GKEY,VERF) VALUES (%(uid)s,%(key)s,%(ver)s)"
     checkDATA={'uid':usn,'key':ran,'ver':'N'}
@@ -170,7 +170,7 @@ def generateMail(usn):
     return ran
 
 def verifiHit2(usn):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="DELETE FROM GENKY WHERE USN = %(uid)s "
     checkDATA={'uid':usn.upper() }
