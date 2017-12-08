@@ -1,1 +1,1 @@
-web: gunicorn mvitbyte.wsgi
+web: gunicorn mysite.wsgi
