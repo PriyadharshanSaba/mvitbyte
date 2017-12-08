@@ -13,9 +13,9 @@ from . import views_ta
 urlpatterns = [
                url(r'^admin/', admin.site.urls),
                url(r'^pro$', views_admini.product, name='product'),
-               url(r'/$', views.index, name='main'),
+               url(r'^$', views.index, name='main'),
                
-               url(r'^log$', views.index , name='index'),
+               url(r'^log$', views.student , name='index'),
                url(r'^red.html$', views.red , name='red'),
                url(r'^attend.html$', views.getAttendance, name='attendance'),
                url(r'^registerNewStudent.html$',views.registerNewStudent, name='just testing'),
@@ -37,7 +37,7 @@ urlpatterns = [
                url(r'^static_attend_preRefresh$',views.static_attend_preRefresh,name='static attendance page'),
               
                
-               url(r'^ta', views_ta.teacherlog, name='ta log'),
+               url(r'ta$', views_ta.teacherlog, name='ta log'),
                url(r'^home_ta.html$', views_ta.teacherHome, name='home'),
                url(r'^parsing_error.html$', views_ta.error, name='error'),
                url(r'^succs.html$',views_ta.simple_upload, name='suc'),
