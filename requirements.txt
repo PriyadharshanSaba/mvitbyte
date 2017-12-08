@@ -9,6 +9,7 @@ configparser==3.5.0
 cookies==2.2.1
 cryptography==1.7.1
 cycler==0.10.0
+dj-database-url==0.4.2
 Django==1.11.5
 django-extensions==1.9.7
 enum34==1.1.6
@@ -42,6 +43,7 @@ pew==1.1.1
 Pillow==4.3.0
 pipenv==9.0.0
 popen==0.1.20
+psycopg2==2.7.3.2
 pyasn1==0.1.9
 pycodestyle==2.3.1
 pycosat==0.6.1

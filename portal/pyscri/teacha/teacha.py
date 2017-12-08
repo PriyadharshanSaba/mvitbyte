@@ -42,7 +42,7 @@ def fetchFilxPath():
 
 def deleteFiles(file_names):
     root_pth = os.path.dirname(os.path.realpath(__file__))
-    root_pth = root_pth.split("/portal/")[0]
+    root_pth = root_pth.split("/MVITbyte/")[0]
     cn =mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
     cursor=cn.cursor()
     checkIT="SELECT PATH FROM FILX WHERE FILNAME= %(n)s"
@@ -51,7 +51,7 @@ def deleteFiles(file_names):
         checkDATA={'n':fn}
         cursor.execute(checkIT,checkDATA)
         fg = cursor.fetchone()
-        fpath = str(root_pth) + str(fg[0])
+        fpath = str(root_pth) +"/MVITbyte"+ str(fg[0])
         cursor.execute(checkDB,checkDATA)
         cn.commit()
         os.remove(str(fpath))
