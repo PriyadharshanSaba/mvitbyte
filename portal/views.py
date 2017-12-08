@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
-import mysql.connector
+import psycopg2
 from django.template import RequestContext
 import re
 import mechanize
@@ -24,7 +24,7 @@ def login_redirection_stu(request):
     checkLen = check_login_details.checkForID(x_id)
     if checkLen == 1:
         x_pass=request.POST['psw']
-        cn =mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+        cn =psycopg2 .connect(user='root', password='Rocky@2009', database='studentportal')
         cursor=cn.cursor()
         checkIT="SELECT USR_ID, USR_PSW FROM REGISTER WHERE USR_ID= %(uid)s"
         checkDATA={'uid':x_id.upper()}
@@ -77,7 +77,7 @@ def getAttendance(request):
 
 def attendanceFromDBMS(request):
     usn = request.session['cur_usn']
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2 .connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT * FROM ATTENDS WHERE USN_ID = %(uid)s"
     checkDATA={'uid':usn}
@@ -152,7 +152,7 @@ def putmar(request):
         xarr=sortedArr
     rangeMarks0x0 = detFromDB.rangeMarks(uusn[5:7],uusn)
     rangeMarks0x1 = rangeMarks0x0[0]
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2 .connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkITK="SELECT SUB1M,SUB2M,SUB3M,SUB4M,SUB5M,SUB6M,SUB7M,SUB8M FROM SEM4_2017_CBCS15 WHERE USN = %(uid0)s"
     checkDATAK={'uid0':uusn}
@@ -198,7 +198,7 @@ def welcomeNewRege(request):
         else:
             regd=regd+str(reg[r])
     regd=regd+"@"+temp[1]
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2 .connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="UPDATE GENKY SET REGD_MAIL = %(rm)s WHERE USN=%(uid)s"
     checkDATA={'rm':regd,'uid':newUSN.upper()}
@@ -277,7 +277,7 @@ def changeMail(request):
 
 def static_attend_preRefresh(request):
     usn = request.session['cur_usn']
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2 .connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     checkIT="SELECT * FROM ATTENDS WHERE USN_ID = %(uid)s"
     checkDATA={'uid':usn}
