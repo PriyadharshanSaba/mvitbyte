@@ -15,7 +15,7 @@ import numpy
 
 
 def index(request):
-    return render(request,'portal/headtest.html')
+    return render(request,'admini/pro.html')
 
 def login_redirection_stu(request):
     x_id = request.POST['usn']
