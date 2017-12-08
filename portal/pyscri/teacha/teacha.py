@@ -1,16 +1,16 @@
-import mysql.connector
+import psycopg2
 import os
 import os.path
 import smtplib
 import verificaMail
 
 def DBConnection():
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='studentportal')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
     cursor=cn.cursor()
     return cn,cursor
 
 def filePathIntoDB(nam,path):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='TEACHA')
     cursor=cn.cursor()
     checkIT="INSERT INTO FILX VALUES(%(n)s,%(p)s)"
     checkDATA={'n':nam,'p':path}
@@ -19,7 +19,7 @@ def filePathIntoDB(nam,path):
     return
 
 def checkIfExists(nam):
-    cn = mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
+    cn = psycopg2.connect(user='root', password='Rocky@2009', database='TEACHA')
     cursor=cn.cursor()
     checkIT="SELECT * FROM FILX WHERE FILNAME = %(n)s"
     checkDATA={'n':nam}
@@ -33,7 +33,7 @@ def checkIfExists(nam):
 
 
 def fetchFilxPath():
-    cn =mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
+    cn =psycopg2.connect(user='root', password='Rocky@2009', database='TEACHA')
     cursor=cn.cursor()
     checkIT="SELECT FILNAME,PATH FROM FILX"
     cursor.execute(checkIT)
@@ -43,7 +43,7 @@ def fetchFilxPath():
 def deleteFiles(file_names):
     root_pth = os.path.dirname(os.path.realpath(__file__))
     root_pth = root_pth.split("/MVITbyte/")[0]
-    cn =mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
+    cn =psycopg2.connect(user='root', password='Rocky@2009', database='TEACHA')
     cursor=cn.cursor()
     checkIT="SELECT PATH FROM FILX WHERE FILNAME= %(n)s"
     checkDB = "DELETE FROM FILX WHERE FILNAME= %(n)s"
