@@ -11,6 +11,7 @@ enum34==1.1.6
 ez-setup==0.9
 flake8==3.5.0
 functools32==3.2.3.post2
+gunicron
 html5lib==1.0.1
 idna==2.6
 lxml==3.7.3
