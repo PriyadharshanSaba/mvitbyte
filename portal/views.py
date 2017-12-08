@@ -27,10 +27,14 @@ def login_redirection_stu(request):
     checkLen = check_login_details.checkForID(x_id)
     if checkLen == 1:
         x_pass=request.POST['psw']
-        cn =psycopg2.connect(user='root', password='Rocky@2009', database='studentportal')
-        cursor=cn.cursor()
-        checkIT="SELECT USR_ID, USR_PSW FROM REGISTER WHERE USR_ID= %(uid)s"
-        checkDATA={'uid':x_id.upper()}
+        conn =psycopg2.connect(dbname='d1v03ol0gs21v5',
+                             user='mvsjgtxaoxwmgp',
+                             password='7b32ce61d22ce32052e233639448ab315708a2c78884b39932dc9ead1b26ef53',
+                             host='ec2-54-235-123-153.compute-1.amazonaws.com',
+                             port='5432')
+        cursor=conn.cursor()
+        checkIT="SELECT USR_ID, USR_PSW FROM student_reg WHERE USR_ID= %(uid)s"
+        checkDATA={'uid':'1MV15CS088'}
         cursor.execute(checkIT,checkDATA)
         acknowledgeUSER = cursor.fetchall()
         try: #check for non registered users
@@ -61,9 +65,9 @@ def login_redirection_stu(request):
 #red.html
 def red(request):
     current_usn = request.session['cur_usn']
-    name=detFromDB.getName(current_usn)
-    fetched = teacha.fetchFilxPath()
-    return render(request,'portal/red.html',{'datas':[name,len(fetched)]})
+    #name=detFromDB.getName(current_usn)
+    #fetched = teacha.fetchFilxPath()
+    return render(request,'portal/red.html',{'datas':[[current_usn]]})#[name,len(fetched)]})
 
 
 def getAttendance(request):
