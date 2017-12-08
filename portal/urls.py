@@ -13,6 +13,7 @@ from . import views_ta
 urlpatterns = [
                url(r'^admin/', admin.site.urls),
                url(r'^pro$', views_admini.product, name='product'),
+               url(r'$', views.index, name='main'),
                
                url(r'^log$', views.index , name='index'),
                url(r'^red.html$', views.red , name='red'),
