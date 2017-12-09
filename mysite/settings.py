@@ -138,7 +138,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Always use forward slashes, even on Windows.
 # Don't forget to use absolute paths, not relative paths.
 
-STATICFILES_DIRS = ("/portal/static/"
+STATICFILES_DIRS = ("/portal/static/",
                     )
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
