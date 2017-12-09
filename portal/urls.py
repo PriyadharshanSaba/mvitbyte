@@ -5,6 +5,7 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import views
 from . import views_admini
 from . import views_ta
@@ -60,5 +61,8 @@ urlpatterns = [
                url(r'^dbokay.html', views_admini.okay, name='updated'),
                url(r'^login_redirection.html', views_admini.login_redirection, name='re')
                ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns += staticfiles_urlpatterns()
 
 
