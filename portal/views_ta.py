@@ -53,7 +53,9 @@ def newReg(request):
     newUser = request.POST['teachaName']
     db=teacha.DBConnection();
     ce = teacha.checkExisting(newUser)
-    if teacha.checkPHONE(request.POST['teachaPh'])==1:
+    teachaPh = 1
+        #if teacha.checkPHONE(request.POST['teachaPh'])==1:
+    if teachaPh ==1:
         if teacha.checkMAIL(request.POST['teachaMail'])==1:
             sg= request.POST['teachaGender']
             if sg == '10':
@@ -75,10 +77,10 @@ def newReg(request):
                 db[1].execute(inse,idat)
                 db[0].commit()
                 inse="INSERT INTO TEACHA.TEACHA_DET VALUES (%(m)s,%(p)s,%(sal)s,%(usr)s,%(to)s)"
-                idat={'m':request.POST['teachaMail'],'p':request.POST['teachaPh'],'sal':gend,'usr':teacha.namCap(newUser),'to':token}
+                idat={'m':request.POST['teachaMail'],'p':teachaPh,'sal':gend,'usr':teacha.namCap(newUser),'to':token}
                 db[1].execute(inse,idat)
                 db[0].commit()
-                verificaMail.verfMail('000','Staff')
+                #verificaMail.verfMail('000',newUser,request.POST['teachaMail'])
                 return render(request,'ta/headtest_ta.html')
             else:
                 return render(request,'ta/headtest_ta.html',{'exist':1})

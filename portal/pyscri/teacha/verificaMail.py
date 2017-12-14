@@ -1,11 +1,11 @@
 import smtplib
 
-def verfMail(otp,name):
+def verfMail(otp,name,toAdd):
     fromaddr = 'studentportal.info7@gmail.com'
     pasw='dbmsproject@2017'
-    #toaddrs = str(toAdd)
-    toaddrs = 'studentportal.info7@gmail.com'
-    content="Hello, "+str(name)+"\nYour code is : "+str(otp)+"\n\n\n\nThis is a testing being done in our shitty DBMS project. Feel free to click the delete button. \n\n\n\nYour freindly neighbourhood,\nPD"
+    toaddrs = str(toAdd)
+    #toaddrs = 'studentportal.info7@gmail.com'
+    content="Hello, Respected "+str(name)+"\nYour code is : "+str(otp)+"."
     msg = "\r\n".join(["From:" + fromaddr,"To:" + toaddrs,"Subject: Verification Code","",content])
     mail = smtplib.SMTP('smtp.gmail.com',587)
     mail.ehlo()
