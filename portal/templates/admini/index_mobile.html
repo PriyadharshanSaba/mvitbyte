@@ -1,0 +1,117 @@
+{% block content %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<head>
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<style>
+    html,body{
+        background: #f1f1f1;
+        font-family: 'Merriweather', sans-serif;
+        
+    }
+div.welc{
+    text-align:center;
+    margin-top:20%;
+    width:100%;
+    color:#737373;
+}
+a.defaul{
+    text-decoration:none;
+    color:white;
+}
+}
+a.brkr{
+    color:orange;
+}
+div.lnk{
+    margin-top:5%;
+}
+
+div.cont{
+    width:100%;
+    display:inline-block;
+}
+div.subcont{
+    float:left;
+    width:50%;
+    display:inline-block;
+    margin-top:4%;
+    font-weight:bold;
+}
+div.subcont_stud{
+    float:left;
+    width:50%;
+    display:inline-block;
+    margin-top:1%;
+    padding-top:1%;
+    padding-bottom:1%;
+    font-weight:bold;
+    background-color:#3399ff;
+}
+div.subcont_teac{
+    float:left;
+    width:50%;
+    display:inline-block;
+    margin-top:1%;
+    font-weight:bold;
+    padding-top:1%;
+    padding-bottom:1%;
+    background-color:#ff5c33;
+}
+
+div.subcont_ad{
+    float:left;
+    width:50%;
+    display:inline-block;
+    margin-top:1%;
+    font-weight:bold;
+    padding-top:1%;
+    padding-bottom:1%;
+    background-color:#ff9900;
+}
+div.subcont_about{
+    float:left;
+    width:50%;
+    display:inline-block;
+    margin-top:1%;
+    font-weight:bold;
+    padding-top:1%;
+    padding-bottom:1%;
+    background-color:#009933;
+}
+
+    </style>
+
+
+<body>
+    
+    
+    <div class="welc">
+        <h1>M V I T &nbsp;&nbsp;B Y T E</h1>
+        <div class="cont">
+        <div class="subcont_stud">
+            <h3><a class="defaul" href="{{ 'log' }}">Student</a><a class="brkr"></a>
+        </div>
+        <div class="subcont_teac">
+            <h3><a class="defaul" href="{{ 'ta' }}">Teacher</a><a class="brkr"></a>
+        </div>
+        <div class="subcont_ad">
+            <h3><a class="defaul" href="{{ 'adm' }}">Admin</a>
+        </div>
+        <div class="subcont_about">
+            <h3><a class="defaul" href="{{ 'log' }}">About</a><a class="brkr"></a>
+        </div>
+        </div>
+    </div>
+        </div>
+</body>
+</html>
+
+
+{% endblock %}
+

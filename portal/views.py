@@ -15,7 +15,7 @@ import numpy
 
 
 def index(request):
-    return render(request,'admini/pro.html')
+    return render(request,'admini/index_mobile.html')
 
 def student(request):
     return render(request,'portal/headtest.html')
