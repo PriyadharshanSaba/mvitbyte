@@ -15,6 +15,8 @@ urlpatterns = [
                url(r'^admin/', include(admin.site.urls)),
                url(r'^pro$', views_admini.product, name='product'),
                url(r'^$', views.index, name='main'),
+               url(r'^index_mobile',views.index_mob, name='index mob'),
+               
                
                url(r'^log$', views.student , name='index'),
                url(r'^red.html$', views.red , name='red'),
@@ -36,7 +38,10 @@ urlpatterns = [
                url(r'^changePassword$', views.changePassword, name='ChangePassword'),
                url(r'^changeEmail$', views.changeMail, name='ChangeMail-ID'),
                url(r'^static_attend_preRefresh$',views.static_attend_preRefresh,name='static attendance page'),
-              
+               
+               url(r'^headtest_mobile$', views.red_mob, name='mobile login'),
+                   
+                
                
                url(r'ta$', views_ta.teacherlog, name='ta log'),
                url(r'^home_ta.html$', views_ta.teacherHome, name='home'),

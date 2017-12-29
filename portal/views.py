@@ -15,7 +15,7 @@ import numpy
 
 
 def index(request):
-    return render(request,'admini/index_mobile.html')
+    return render(request,'admini/pro.html')
 
 def student(request):
     return render(request,'portal/headtest.html')
@@ -313,5 +313,18 @@ def static_attend_preRefresh(request):
     xnam=studoinfo.subcodeToSubname(cod)
     mes=addi.generateMessage_attend(perAt,xnam)
     return render(request,'portal/static_attend_preRefresh.html',{'datas':[fet,ca,ch,cod,xnam,perAt,mes]})
+
+
+
+
+
+
+########### MOBILE SITES ############
+
+def red_mob(request):
+    return render(request,'portal/mobile/headtest_mobile.html',{'datas':1})
+
+def index_mob(request):
+    return render(request,'admini/mobile/index_mobile.html',{'datas':1})
 
 

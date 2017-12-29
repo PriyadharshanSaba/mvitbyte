@@ -27,7 +27,7 @@ SECRET_KEY='n5_&pmk7k&l4n19qx%(ahfi7-8pj7k!d)bh&=_re8uqec2!0)3'
 DEBUG = True
 
 ALLOWED_HOSTS = ['mvitbyte.herokuapp.com',
-                 '192.168.1.110',
+                 '192.168.1.103',
                  '127.0.0.1']
 
 
