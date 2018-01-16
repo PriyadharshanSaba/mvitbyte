@@ -14,8 +14,12 @@ from . import views_ta
 urlpatterns = [
                url(r'^admin/', include(admin.site.urls)),
                url(r'^pro$', views_admini.product, name='product'),
+<<<<<<< HEAD
                url(r'^$', views.index, name='main'),
                url(r'^index_mobile',views.index_mob, name='index mob'),
+=======
+               url(r'$', views.index, name='main'),
+>>>>>>> 1fa3284e7c364e5d9d3a53755b5b9024745906e3
                
                
                url(r'^log$', views.student , name='index'),
