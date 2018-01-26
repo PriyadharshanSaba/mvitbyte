@@ -15,7 +15,6 @@ urlpatterns = [
                url(r'^admin/', include(admin.site.urls)),
                url(r'^pro$', views_admini.product, name='product'),
 <<<<<<< HEAD
-<<<<<<< HEAD
                url(r'^$', views.index, name='main'),
                url(r'^index_mobile',views.index_mob, name='index mob'),
 =======
