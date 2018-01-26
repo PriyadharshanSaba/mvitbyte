@@ -43,14 +43,8 @@ def fetchFilxPath():
 def deleteFiles(file_names):
     root_pth = os.path.dirname(os.path.realpath(__file__))
     root_pth = root_pth.split("/MVITbyte/")[0]
-<<<<<<< HEAD
-<<<<<<< HEAD
     cn =psycopg2.connect(user='root', password='Rocky@2009', database='TEACHA')
-=======
-=======
->>>>>>> 1fa3284e7c364e5d9d3a53755b5b9024745906e3
     cn =mysql.connector.connect(user='root', password='Rocky@2009', database='TEACHA')
->>>>>>> 1fa3284e7c364e5d9d3a53755b5b9024745906e3
     cursor=cn.cursor()
     checkIT="SELECT PATH FROM FILX WHERE FILNAME= %(n)s"
     checkDB = "DELETE FROM FILX WHERE FILNAME= %(n)s"
