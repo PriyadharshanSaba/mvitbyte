@@ -124,18 +124,51 @@ def temp_red(request):
 #            code.append(div.text)
 #        i+=1
     finalm = [mar[1]]
-
+    subject.remove("subject")
     for i in xrange(4,len(mar),3):
         if i <=24:
             finalm.append(mar[i])
         else:
             break
+    grad = ['g']
+    gp = [-1]
+    for i in finalm:
+        print i
+        gx=getGrade(int(i))
+        grad.append(gx[0])
+        gp.append(gx[1])
 
-    print finalm
-    return render(request,'portal/temp_red.html',{'datas':[[student_name]]})#[name,len(fetched)]})
+    sum=0
+    grad.remove('g')
+    gp.remove(-1)
+    for i in range(0,len(gp)):
+        if i==1 or i==3:
+            sum += gp[i]*3.0
+        elif i>=6:
+            sum+=gp[i]*2.0
+        else:
+            sum+=gp[i]*4.0
+    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,sum/26]})#[name,len(fetched)]})
 
 
-
+def getGrade(n):
+    print n
+    if n >= 90 :
+        return 'S+',10
+    elif n>=80 and n<90:
+        return 'S',9
+    elif n>=70 and n<80:
+        return 'A',8
+    elif n>=60 and n<70:
+        return 'B',7
+    elif n>=50 and n<60:
+        return 'C',6
+    elif n>=45 and n<50:
+        return 'D',5
+    elif n>=40 and n<45:
+        return 'E',4
+    else:
+        return 'F',0
 
 
 
