@@ -23,7 +23,7 @@ def student(request):
 def login_redirection_stu(request):
     x_id = request.POST['usn']
     x_id=x_id.upper()
-#    request.session['cur_usn'] = x_id
+    request.session['cur_usn'] = x_id
     #checkLen = check_login_details.checkForID(x_id)
 #    if checkLen == 1:
     x_pass=request.POST['psw']
@@ -36,7 +36,7 @@ def login_redirection_stu(request):
     #print x_pass.strip() == (acknowledgeUSER[0][0]).strip()
     #print x_pass.strip()+">>"+acknowledgeUSER[0][0].strip()
     if x_pass.strip()==(acknowledgeUSER[0][0]).strip():
-        return render(request,'portal/red.html',{'name':[x_id]})
+        return render(request,'portal/temp_red.html',{'name':[x_id]})
     else:
         return render(request,'admini/pro.html') #,{'name':[x_id]})
 #        try: #check for non registered users
@@ -71,6 +71,72 @@ def red(request):
     #name=detFromDB.getName(current_usn)
     #fetched = teacha.fetchFilxPath()
     return render(request,'portal/red.html',{'datas':[[current_usn]]})#[name,len(fetched)]})
+
+
+
+
+
+
+def temp_red(request):
+    #subject = ['o']*8   #code,mar=list(),list(),list()
+    subject = ['subject']
+    mar = ['mark']
+    x_id = request.POST['usn']
+    x_id=x_id.upper()
+    request.session['cur_usn'] = x_id
+    #http://results.vtu.ac.in/vitaviresultcbcs/index.php
+    br = mechanize.Browser()
+    br.set_handle_robots(False)
+    br.open("http://results.vtu.ac.in/vitaviresultcbcs/index.php")
+    br.select_form(nr=0)
+    br.form['usn']=x_id
+    sub = br.submit()
+    soup = BeautifulSoup(sub.read(),"lxml")
+    flag=0
+    for i in soup.findAll('td'):
+        if i.text.strip(' ') == "Student Name":
+            flag+=1
+        elif flag==1:
+            student_name = i.text.strip(" : ")
+            flag=0
+
+
+    for div in soup.findAll('div',{'style':'text-align: left;width: 400px;'}):
+        subject.append(div.text)
+    #   subject[i]=str(div.text)
+    #i+=1
+
+    i=1
+    j=1
+    k=6
+    l=1
+    for div in soup.findAll('div',{'class':'divTableCell'}):
+        if i==6:
+            if j % k ==0:
+                mar.append(div.text)
+                k=k+1
+                l+=1
+            else:
+                j+=1
+        else:
+            i+=1
+#        if i%7 == 0:
+#            code.append(div.text)
+#        i+=1
+    finalm = [mar[1]]
+
+    for i in xrange(4,len(mar),3):
+        if i <=24:
+            finalm.append(mar[i])
+        else:
+            break
+
+    print finalm
+    return render(request,'portal/temp_red.html',{'datas':[[student_name]]})#[name,len(fetched)]})
+
+
+
+
 
 
 def getAttendance(request):

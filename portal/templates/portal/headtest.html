@@ -283,7 +283,8 @@ img.log{
                                             filter: blur(5px);     -->
         <div class="logg">
         <div>
-        <form method="post" action="{{ 'login_redirection_stu.html' }}">
+<!--    dddddd  CHANGED HERE CHANGED        HERE        CHANGED     HERE        -->
+        <form method="post" action="{{ 'temp_red.html' }}">
             <input type="text" placeholder="USN" name="usn" id="loginID" required>{% csrf_token %}
             <input type="password" placeholder="Password" name="psw" required>
             <button type="submit" class="subm">Login</button><br>
