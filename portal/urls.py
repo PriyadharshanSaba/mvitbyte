@@ -16,10 +16,8 @@ urlpatterns = [
                url(r'^pro$', views_admini.product, name='product'),
                url(r'^$', views.index, name='main'),
                url(r'^index_mobile',views.index_mob, name='index mob'),
-               url(r'$', views.index, name='main'),
-               url(r'$', views.index, name='main'),
                
-               url(r'^log$', views.student , name='index'),
+               url(r'^lo.html$', views.student , name='student index'),
                url(r'^red.html$', views.red , name='red'),
                url(r'^attend.html$', views.getAttendance, name='attendance'),
                url(r'^registerNewStudent.html$',views.registerNewStudent, name='just testing'),

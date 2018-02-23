@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import os
 import sys
-
+sys.path.append("/usr/local/lib/python2.7/site-packages")
+  
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
     try:
