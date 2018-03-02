@@ -89,7 +89,7 @@ def temp_red(request):
     br.set_handle_robots(False)
     br.open("http://results.vtu.ac.in/vitaviresultcbcs/index.php")
     br.select_form(nr=0)
-    br.form['sln']=x_id
+    br.form['lns']=x_id
     sub = br.submit()
     soup = BeautifulSoup(sub.read(),"lxml")
     flag=0
