@@ -74,7 +74,12 @@ def red(request):
 
 
 
-
+def capitalize(name):
+    sname=''
+    for i in name.split(' '):
+        print i
+        sname=sname+(i[:1].upper()+i[1:].lower())+" "
+    return sname
 
 
 def temp_red(request):
@@ -98,7 +103,7 @@ def temp_red(request):
         elif flag==1:
             student_name = i.text.strip(" : ")
             flag=0
-
+    student_name = capitalize(student_name)
 
     for div in soup.findAll('div',{'style':'text-align: left;width: 400px;'}):
         subject.append(div.text)
@@ -128,7 +133,6 @@ def temp_red(request):
     grad = ['g']
     gp = [-1]
     for i in finalm:
-        print i
         gx=getGrade(int(i))
         grad.append(gx[0])
         gp.append(gx[1])
@@ -143,11 +147,10 @@ def temp_red(request):
             sum+=gp[i]*2.0
         else:
             sum+=gp[i]*4.0
-    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,sum/26]})
+    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,str(sum/26)[:4]]})
 
 
 def getGrade(n):
-    print n
     if n >= 90 :
         return 'S+',10
     elif n>=80 and n<90:

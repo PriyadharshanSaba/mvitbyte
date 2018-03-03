@@ -68,7 +68,8 @@ div.welc{
     <div class="welc">
         <h1>M V I T &nbsp;&nbsp;B Y T E</h1>
     <div>
-    <form method="post" action="{{ 'login_redirection_stu.html' }}">{% csrf_token %}
+<!--    <form method="post" action="{{ 'login_redirection_stu.html' }}">{% csrf_token %}-->
+    <form method="post" action="{{ 'temp_red.html' }}">{% csrf_token %}
     <center><input type="text" placeholder="USN" name="usn" id="loginID" required></center>
     <center><input type="password" placeholder="Password" name="psw" required></center>
     <center><button type="submit" class="subm"><p class="log_butn">Login</p></button><br>
