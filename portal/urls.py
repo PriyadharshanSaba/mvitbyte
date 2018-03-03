@@ -16,7 +16,7 @@ urlpatterns = [
                url(r'^pro$', views_admini.product, name='product'),
                url(r'^$', views.index, name='main'),
                url(r'^index_mobile',views.index_mob, name='index mob'),
-               
+
                url(r'^lo.html$', views.student , name='student index'),
                url(r'^red.html$', views.red , name='red'),      #changed here and login_redirection_Stu and line 286 in headtest.html
                url(r'^temp_red.html$', views.temp_red , name='tempred'),
