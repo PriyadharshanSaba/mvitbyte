@@ -19,7 +19,7 @@ matplotlib==2.0.2
 mccabe==0.6.1
 mechanize==0.3.6
 numpy==1.12.1
-pandas==0.20.1
+pandas==0.22.0
 pathlib==1.0.1
 pew==1.1.1
 pipenv==9.0.0
