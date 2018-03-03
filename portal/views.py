@@ -10,8 +10,8 @@ from pyscri import setUpNewStudentData,check_login_details,putmarksintodb,putMar
 from pyscri import studoinfo,verificaMail,detFromDB,addi,connDB
 from pyscri.teacha import teacha
 import csv
-import numpy
-
+import numpy as np
+import pandas as pd
 
 
 def index(request):
@@ -147,7 +147,7 @@ def temp_red(request):
             sum+=gp[i]*2.0
         else:
             sum+=gp[i]*4.0
-    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,str(sum/26)[:4]]})
+    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,str(sum/26)[:4],x_id]})
 
 
 def getGrade(n):
@@ -168,6 +168,15 @@ def getGrade(n):
     else:
         return 'F',0
 
+
+def semester_wise(request):
+    usn = request.POST['usn']
+    df4 = pd.read_csv('https://raw.githubusercontent.com/PriyadharshanSaba/Prototyping-StudentsMarksPredictor-MachineLearning/master/ds/gpa4.csv', sep='\t')
+    x4=df4.loc[df4['usn'] == usn]
+    df5 = pd.read_csv('https://raw.githubusercontent.com/PriyadharshanSaba/Prototyping-StudentsMarksPredictor-MachineLearning/master/ds/gpa5.csv', sep='\t')
+    x5=df5.loc[df5['usn'] == usn]
+    print x5['gpa']
+    return render(request,'portal/semesters.html',{'datas':[x4['gpa'].values,x5['gpa'].values]})
 
 
 def getAttendance(request):

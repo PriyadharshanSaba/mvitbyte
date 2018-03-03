@@ -38,6 +38,7 @@ urlpatterns = [
                url(r'^changePassword$', views.changePassword, name='ChangePassword'),
                url(r'^changeEmail$', views.changeMail, name='ChangeMail-ID'),
                url(r'^static_attend_preRefresh$',views.static_attend_preRefresh,name='static attendance page'),
+               url(r'^semesters$',views.semester_wise, name='sems'),
                
                url(r'^headtest_mobile$', views.red_mob, name='mobile login'),
                    

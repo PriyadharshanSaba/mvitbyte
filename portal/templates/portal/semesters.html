@@ -1,0 +1,36 @@
+{% block content %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+    <head>
+        <title>Welcome,{{ datas.0.0 }}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+<!--        <link rel="stylesheet" type="text/css" href="{% static 'css/attendance.css' %}">-->
+        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+<style>
+    html,body{
+        background: #f1f1f1;
+        font-family: 'Merriweather', sans-serif;
+        
+    }
+h3{
+    font-family: 'Merriweather', sans-serif;
+
+}
+
+div.win{
+    padding:5%;
+    padding-left:47%;
+}
+</style>
+
+<body>
+    <div class="win">
+        <h3> SEM 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{datas.0.0}} </h3>
+        <h3> SEM 5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{datas.1.0}} </h3>
+    </div>
+</body>
+</html>
+
+{% endblock %}

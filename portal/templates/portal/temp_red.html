@@ -198,7 +198,12 @@ td{
                 </tbody>
             </table>
             <br>
-            <h1>GPA:&nbsp;&nbsp; {{datas.3}}</h1>
+            <form method="post" action="{{ 'semesters' }}">
+                {% csrf_token %}
+<!--            <button class="newu" type="submit"><p style="margin-bottom:10px;text-align:center;">-->
+            <input type="hidden" name="usn" value="{{ datas.4 }}" />
+            <h1><a href="{{ 'semesters' }}" style="text-decoration:none" onclick="document.forms[0].submit();return false;">GPA:&nbsp;&nbsp; {{datas.3}}</a></h1>
+            </form>
         </div>
 
 
