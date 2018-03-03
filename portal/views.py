@@ -78,12 +78,11 @@ def red(request):
 
 
 def temp_red(request):
-    #subject = ['o']*8   #code,mar=list(),list(),list()
     subject = ['subject']
     mar = ['mark']
     x_id = request.POST['usn']
     x_id=x_id.upper()
-    request.session['cur_usn'] = x_id
+    #request.session['cur_usn'] = x_id
     #http://results.vtu.ac.in/vitaviresultcbcs/index.php
     br = mechanize.Browser()
     br.set_handle_robots(False)
@@ -103,8 +102,6 @@ def temp_red(request):
 
     for div in soup.findAll('div',{'style':'text-align: left;width: 400px;'}):
         subject.append(div.text)
-    #   subject[i]=str(div.text)
-    #i+=1
 
     i=1
     j=1
@@ -120,9 +117,7 @@ def temp_red(request):
                 j+=1
         else:
             i+=1
-#        if i%7 == 0:
-#            code.append(div.text)
-#        i+=1
+
     finalm = [mar[1]]
     subject.remove("subject")
     for i in xrange(4,len(mar),3):
@@ -148,7 +143,7 @@ def temp_red(request):
             sum+=gp[i]*2.0
         else:
             sum+=gp[i]*4.0
-    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,sum/26]})#[name,len(fetched)]})
+    return render(request,'portal/temp_red.html',{'datas':[[student_name],subject,grad,sum/26]})
 
 
 def getGrade(n):
