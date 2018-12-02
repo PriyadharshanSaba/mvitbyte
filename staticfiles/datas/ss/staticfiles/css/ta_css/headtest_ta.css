@@ -1,0 +1,210 @@
+html {margin: 0; height: 100%; overflow: hidden}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    text-align: center;
+    position:relative;
+}
+
+.subm {
+    background-color: #ff8000;
+    color: white;
+    padding: 5px 20px;
+    margin: 5px 21px;
+    border: none;
+    cursor: pointer;
+    width: 65%;
+}
+
+.newu {
+    background-color: #4CAF50;
+    padding: 20px 25px;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 10px;
+    
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position:fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    height: 100%; /* Full height */
+    width:auto;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.2s;
+    animation-name: fadeIn;
+    animation-duration: 0.2s
+}
+
+/* Modal Content */
+.modal-content {
+    position: absolute;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 40%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align:left;
+    
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color:#f98006;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;
+    text_align: left;
+    
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #f98006;
+    color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+
+
+
+
+
+
+h2.a {
+    z-index:2;
+    position: relative;
+    text-align: center;
+}
+div.logform {
+    z-index:1;
+    position:relative;
+    text-align:center;
+    height: 80px;
+    vertical-align: middle;
+}
+
+.logg {
+    
+    position: fixed;
+    height: 200px;
+    width: 150px;
+}
+
+
+img.log{
+    position:absolute;
+    z-index=2;
+    min-width:64px;
+    max-width:65px;
+    min-height:64px;
+    max-height:65px;
+}
+
+.bb{
+    background-color:#666666;
+    background-image: url('{% static "/images/bglog.jpg" %}');
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100px 100px;
+}
+
+.bbimg{
+    position:fixed;
+    display:block;
+}
+
+.newregform{
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    border:none;
+}
+
